@@ -1,7 +1,10 @@
+///
+/// @project  : jsotp
+/// @author   : Gin (gin.lance.inside@hotmail.com)
+/// @link     : https://github.com/LanceGin/dotp
+/// @Disc     : a node module to generate and verify one-time passwords
+///
 library dotp;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/hotp.dart';
+export 'src/totp.dart';
