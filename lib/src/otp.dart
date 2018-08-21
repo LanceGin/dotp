@@ -6,6 +6,7 @@
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:base32/base32.dart';
+import 'util.dart';
 
 abstract class OTP {
   ///
@@ -26,9 +27,12 @@ abstract class OTP {
   /// only to be "sha1"
   ///
   ///
-  final String secret;
-  final int digits;
-  OTP(this.secret, [this.digits = 6]);
+  String secret;
+  int digits;
+  OTP(String secret, [int digits = 6]) {
+    this.secret = secret;
+    this.digits = digits;
+  }
 
   /// 
   /// When class HOTP or TOTP pass the input params to this
@@ -48,7 +52,7 @@ abstract class OTP {
     /// initial the HMAC-SHA1 object
     var hmacSha1 = Hmac(sha1, hmacKey);
     /// get hmac answer
-    var hmac = hmacSha1.convert(_intToBytelist(input)).bytes;
+    var hmac = hmacSha1.convert(Util.intToBytelist(input)).bytes;
     /// calculate the init offset
     int offset = hmac[hmac.length -1] & 0xf;
     /// calculate the code
@@ -81,26 +85,5 @@ abstract class OTP {
   String urlGen(String _issuer, String _type) {
     final _secret = this.secret;
     return 'otpauth://$_type/SK?secret=$_secret&issuer=$_issuer';
-  }
-
-  /// 
-  /// transfer the int type to List type
-  /// 
-  /// @param {input}
-  /// @type {int}
-  /// @desc input param, maybe counter or time
-  /// 
-  /// @return {List}
-  /// 
-  static List _intToBytelist(int input, [int padding = 8]) {
-    var _result = [];
-    var _input = input;
-    while (_input != 0) {
-      _result.add(String.fromCharCode(_input & 0xff));
-      _input >>= 8;
-    }
-    _result.addAll([0, 0, 0, 0, 0, 0, 0, 0]);
-    _result = _result.sublist(0, 7);
-    return _result.reversed;
   }
 }
