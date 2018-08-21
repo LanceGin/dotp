@@ -54,7 +54,7 @@ abstract class OTP {
     /// get hmac answer
     var hmac = hmacSha1.convert(Util.intToBytelist(input)).bytes;
     /// calculate the init offset
-    int offset = hmac[hmac.length -1] & 0xf;
+    int offset = hmac[hmac.length - 1] & 0xf;
     /// calculate the code
     int code = (
       (hmac[offset] & 0x7f) << 24 |

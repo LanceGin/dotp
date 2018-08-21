@@ -35,14 +35,15 @@ abstract class Util {
   /// @return {List}
   /// 
   static List intToBytelist(int input, [int padding = 8]) {
-    var _result = [];
+    List<int> _result = [];
     var _input = input;
     while (_input != 0) {
-      _result.add(String.fromCharCode(_input & 0xff));
+      _result.add(_input & 0xff);
       _input >>= 8;
     }
     _result.addAll([0, 0, 0, 0, 0, 0, 0, 0]);
-    _result = _result.sublist(0, 7);
-    return _result.reversed;
+    _result = _result.sublist(0, 8);
+    _result = _result.reversed.toList();
+    return _result;
   }
 }
