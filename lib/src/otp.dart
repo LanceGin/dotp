@@ -28,8 +28,7 @@ abstract class OTP {
   ///
   final String secret;
   final int digits;
-
-  OTP(this.secret, [this.digits = 6])
+  OTP(this.secret, [this.digits = 6]);
 
   /// 
   /// When class HOTP or TOTP pass the input params to this
@@ -94,8 +93,14 @@ abstract class OTP {
   /// @return {List}
   /// 
   static List _intToBytelist(int input, [int padding = 8]) {
-    var result = [];
-    
-    return result;
+    var _result = [];
+    var _input = input;
+    while (_input != 0) {
+      _result.add(String.fromCharCode(_input & 0xff));
+      _input >>= 8;
+    }
+    _result.addAll([0, 0, 0, 0, 0, 0, 0, 0]);
+    _result = _result.sublist(0, 7);
+    return _result.reversed;
   }
 }
