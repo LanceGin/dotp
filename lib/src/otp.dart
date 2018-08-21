@@ -66,6 +66,24 @@ abstract class OTP {
     return strCode;
   }
 
+  ///
+  /// Generate a url with TOTP or HOTP instance.
+  /// 
+  /// @param {issuer}
+  /// @type {String}
+  /// @desc maybe it is the Service name
+  /// 
+  /// @param {type}
+  /// @type {String}
+  /// @desc type of OTP instance
+  /// 
+  /// @return {String}
+  /// 
+  String urlGen(String _issuer, String _type) {
+    final _secret = this.secret;
+    return 'otpauth://$_type/SK?secret=$_secret&issuer=$_issuer';
+  }
+
   /// 
   /// transfer the int type to List type
   /// 
