@@ -1,27 +1,27 @@
 name: dotp
-description: Dart One-Time Password module.
-version: 1.0.1
+description: dotp is a dart package to generate and verify one-time passwords.
+version: 1.0.2
 author: Gin <gin.lance.inside@hotmail.com>
 homepage: https://github.com/LanceGin/dotp
 
 environment:
-  sdk: '>=2.0.0 <3.0.0'
-  
+  sdk: ">=1.13.0 <3.0.0"
+
 dependencies:
   crypto: ^2.0.3
   base32: ^1.0.1
   flutter:
     sdk: flutter
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+# dev_dependencies:
+  # flutter_test:
+    # sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
-flutter:
+# flutter:
 
   # To add assets to your package, add an assets section, like this:
   # assets:
