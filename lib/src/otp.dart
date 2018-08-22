@@ -34,34 +34,37 @@ abstract class OTP {
     this.digits = digits;
   }
 
-  /// 
+  ///
   /// When class HOTP or TOTP pass the input params to this
   /// function, it will generate the OTP object with params,
   /// the params may be counter or time.
-  /// 
+  ///
   /// @param {input}
   /// @type {int}
   /// @desc input params to generate OTP object, maybe
   /// counter or time.
-  /// 
+  ///
   /// @return {String}
-  /// 
+  ///
   String generateOTP(int input) {
     /// base32 decode the secret
     var hmacKey = base32.decode(this.secret);
+
     /// initial the HMAC-SHA1 object
     var hmacSha1 = Hmac(sha1, hmacKey);
+
     /// get hmac answer
     var hmac = hmacSha1.convert(Util.intToBytelist(input)).bytes;
+
     /// calculate the init offset
     int offset = hmac[hmac.length - 1] & 0xf;
+
     /// calculate the code
-    int code = (
-      (hmac[offset] & 0x7f) << 24 |
-      (hmac[offset + 1] & 0xff) << 16 |
-      (hmac[offset + 2] & 0xff) << 8 |
-      (hmac[offset + 3] & 0xff)
-    );
+    int code = ((hmac[offset] & 0x7f) << 24 |
+        (hmac[offset + 1] & 0xff) << 16 |
+        (hmac[offset + 2] & 0xff) << 8 |
+        (hmac[offset + 3] & 0xff));
+
     /// get the initial string code
     var strCode = (code % pow(10, this.digits)).toString();
     strCode = strCode.padLeft(this.digits, '0');
@@ -71,17 +74,17 @@ abstract class OTP {
 
   ///
   /// Generate a url with TOTP or HOTP instance.
-  /// 
+  ///
   /// @param {issuer}
   /// @type {String}
   /// @desc maybe it is the Service name
-  /// 
+  ///
   /// @param {type}
   /// @type {String}
   /// @desc type of OTP instance
-  /// 
+  ///
   /// @return {String}
-  /// 
+  ///
   String urlGen(String _issuer, String _type) {
     final _secret = this.secret;
     return 'otpauth://$_type/SK?secret=$_secret&issuer=$_issuer';

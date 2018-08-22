@@ -4,20 +4,20 @@
 ///
 
 abstract class Util {
-  /// 
+  ///
   /// format the time string to int
-  /// 
+  ///
   /// @param {time}
   /// @type {Date}
   /// @desc the time need to be format
-  /// 
+  ///
   /// @param {interval}
   /// @type {Int}
   /// @desc interval means the one-time password's life,
   /// default to be 30.
-  /// 
+  ///
   /// @return {Int}
-  /// 
+  ///
   static int timeFormat(DateTime time, int interval) {
     final _timeStr = time.millisecondsSinceEpoch.toString();
     final _formatTime = _timeStr.substring(0, _timeStr.length - 3);
@@ -25,15 +25,15 @@ abstract class Util {
     return int.parse(_formatTime) ~/ interval;
   }
 
-  /// 
+  ///
   /// transfer the int type to List type
-  /// 
+  ///
   /// @param {input}
   /// @type {int}
   /// @desc input param, maybe counter or time
-  /// 
+  ///
   /// @return {List}
-  /// 
+  ///
   static List intToBytelist(int input, [int padding = 8]) {
     List<int> _result = [];
     var _input = input;
