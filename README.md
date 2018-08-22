@@ -20,7 +20,7 @@ Add `dotp` as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  dotp: 1.0.1
+  dotp: ^1.0.2
 ```
 
 ### Example
