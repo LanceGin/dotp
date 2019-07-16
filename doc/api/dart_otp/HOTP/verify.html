@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the verify method from the TOTP class, for the Dart programming language.">
-  <title>verify method - TOTP class - dotp library - Dart API</title>
+  <meta name="description" content="API docs for the verify method from the HOTP class, for the Dart programming language.">
+  <title>verify method - HOTP class - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -24,9 +24,9 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="index.html">dotp</a></li>
-    <li><a href="dotp/dotp-library.html">dotp</a></li>
-    <li><a href="dotp/TOTP-class.html">TOTP</a></li>
+    <li><a href="index.html">dart_otp</a></li>
+    <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
+    <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
     <li class="self-crumb">verify method</li>
   </ol>
   <div class="self-name">verify</div>
@@ -45,36 +45,35 @@
     </header>
     
     <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-      <li><a href="index.html">dotp</a></li>
-      <li><a href="dotp/dotp-library.html">dotp</a></li>
-      <li><a href="dotp/TOTP-class.html">TOTP</a></li>
+      <li><a href="index.html">dart_otp</a></li>
+      <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
+      <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
       <li class="self-crumb">verify method</li>
     </ol>
     
-    <h5>TOTP class</h5>
+    <h5>HOTP class</h5>
     <ol>
-      <li class="section-title"><a href="dotp/TOTP-class.html#constructors">Constructors</a></li>
-      <li><a href="dotp/TOTP/TOTP.html">TOTP</a></li>
+      <li class="section-title"><a href="dart_otp/HOTP-class.html#constructors">Constructors</a></li>
+      <li><a href="dart_otp/HOTP/HOTP.html">HOTP</a></li>
     
-      <li class="section-title">
-        <a href="dotp/TOTP-class.html#instance-properties">Properties</a>
+      <li class="section-title inherited">
+        <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
-      <li><a href="dotp/TOTP/interval.html">interval</a></li>
-      <li class="inherited"><a href="dotp/TOTP/digits.html">digits</a></li>
-      <li class="inherited"><a href="dotp/TOTP/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="dotp/TOTP/runtimeType.html">runtimeType</a></li>
-      <li class="inherited"><a href="dotp/TOTP/secret.html">secret</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/secret.html">secret</a></li>
     
-      <li class="section-title"><a href="dotp/TOTP-class.html#instance-methods">Methods</a></li>
-      <li><a href="dotp/TOTP/now.html">now</a></li>
-      <li><a href="dotp/TOTP/urlGen.html">urlGen</a></li>
-      <li><a href="dotp/TOTP/verify.html">verify</a></li>
-      <li class="inherited"><a href="dotp/TOTP/generateOTP.html">generateOTP</a></li>
-      <li class="inherited"><a href="dotp/TOTP/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dotp/TOTP/toString.html">toString</a></li>
+      <li class="section-title"><a href="dart_otp/HOTP-class.html#instance-methods">Methods</a></li>
+      <li><a href="dart_otp/HOTP/at.html">at</a></li>
+      <li><a href="dart_otp/HOTP/urlGen.html">urlGen</a></li>
+      <li><a href="dart_otp/HOTP/verify.html">verify</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/toString.html">toString</a></li>
     
-      <li class="section-title inherited"><a href="dotp/TOTP-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="dotp/TOTP/operator_equals.html">operator ==</a></li>
+      <li class="section-title inherited"><a href="dart_otp/HOTP-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/operator_equals.html">operator ==</a></li>
     
     
     
@@ -87,7 +86,7 @@
     <section class="multi-line-signature">
       <span class="returntype">bool</span>
             <span class="name ">verify</span>
-(<wbr><span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, [</span> <span class="parameter" id="verify-param-time"><span class="type-annotation">DateTime</span> <span class="parameter-name">time</span></span> ])
+(<wbr><span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span></span>)
       
     </section>
     <section class="desc markdown">
@@ -95,9 +94,9 @@
 <p>@param {otp}
 @type {String}
 @desc the OTP waiting for checking</p>
-<p>@param {time}
-@type {int or datetime}
-@desc Time to check OTP at (defaults to now)</p>
+<p>@param {counter}
+@type {int}
+@desc the OTP HMAC counter</p>
 <p>@return {Boolean}</p>
 <p>@example
 TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
@@ -110,12 +109,10 @@ totp.verify(432143); // =&gt; false</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">bool verify(String otp, [DateTime time]) {
-  DateTime _time = time;
-  _time ??= DateTime.now();
+      <pre class="language-dart"><code class="language-dart">bool verify(String otp, int counter) {
+  String otpCount = this.at(counter);
 
-  String otpTime = super.generateOTP(Util.timeFormat(_time, this.interval));
-  if (otp == otpTime) {
+  if (otp == otpCount) {
     return true;
   }
   return false;
@@ -131,7 +128,7 @@ totp.verify(432143); // =&gt; false</p>
 
 <footer>
   <span class="no-break">
-    dotp 1.0.2
+    dart_otp 1.0.3
   </span>
 
   
