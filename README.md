@@ -33,10 +33,10 @@ import 'package:dart_otp/dart_otp.dart';
 void main() {
   TOTP totp = TOTP("J22U6B3WIWRRBTAV");
   totp.now(); /// => 432143
-  
+
   /// verify for the current time
   totp.verify(432143); /// => true
-  
+
   /// verify after 30s
   totp.verify(432143); /// => false
 }
@@ -52,7 +52,7 @@ void main() {
   hotp.at(0); /// => 432143
   hotp.at(1); /// => 231434
   hotp.at(2132); /// => 242432
-  
+
   /// verify with a counter
   hotp.verify(242432, 2132); /// => true
   hotp.verify(242432, 2133); /// => false
@@ -61,10 +61,14 @@ void main() {
 
 ### Api
 
-#### • [TOTP(String secret)](https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L23)
+#### • [TOTP(String secret, [int interval, int digits])](https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L23)
 
 	param: secret
 	type: String
+	param: interval = 30
+	type: int
+	param: digits = 6
+	type: int
 	return: TOTP
 	desc: generate TOTP instance.
 
@@ -74,7 +78,7 @@ void main() {
 	desc: get the one-time password with current time.
 
 #### • [TOTP.verify(String otp, [Datetime time])](https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L64)
-	
+
 	param: otp
 	type: String
 	param: time
@@ -89,10 +93,12 @@ void main() {
 	return: String
 	desc: generate url with TOTP instance
 
-#### • [HOTP(String secret)](https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/hotp.dart#L10)
+#### • [HOTP(String secret, [int digits])](https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/hotp.dart#L10)
 
 	param: secret
 	type: String
+	param: digits = 6
+	type: int
 	return: HOTP
 	desc: generate HOTP instance.
 
