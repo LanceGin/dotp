@@ -1,4 +1,4 @@
-import 'package:dotp/dotp.dart';
+import 'package:dart_otp/dart_otp.dart';
 
 void main() {
   TOTP a = TOTP("J22U6B3WIWRRBTAV");

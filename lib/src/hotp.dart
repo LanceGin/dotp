@@ -6,6 +6,19 @@
 import 'otp.dart';
 
 class HOTP extends OTP {
+
+  ///
+  /// @param {secret}
+  /// @type {String}
+  /// @desc random base32-encoded key to generate OTP.
+  ///
+  /// @param {digits}
+  /// @type {int}
+  /// @desc the length of the one-time password.
+  /// This defaults to 6.
+  ///
+  /// @return {HOTP}
+  ///
   HOTP(String secret, [int digits = 6]) : super(secret, digits);
 
   ///

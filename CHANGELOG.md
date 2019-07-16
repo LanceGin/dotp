@@ -1,9 +1,15 @@
 ## [1.0.1]
 
-* release the first stable version
+* Release the first stable version
 
 ## [1.0.2]
 
-* add example file
-* add docs
-* fix dart format warning
+* Add docs
+* Add example file
+* Fix dart format warning
+
+## [1.0.3]
+
+* Add documentation
+* Minor code style enhancements
+* Make interval and digits properties public for time based tokens

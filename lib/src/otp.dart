@@ -9,6 +9,10 @@ import 'package:base32/base32.dart';
 import 'util.dart';
 
 abstract class OTP {
+
+  String secret;
+  int digits;
+
   ///
   /// This constructor will create OTP instance.
   ///
@@ -27,8 +31,6 @@ abstract class OTP {
   /// only to be "sha1"
   ///
   ///
-  String secret;
-  int digits;
   OTP(String secret, [int digits = 6]) {
     this.secret = secret;
     this.digits = digits;

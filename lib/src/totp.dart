@@ -7,6 +7,9 @@ import 'otp.dart';
 import 'util.dart';
 
 class TOTP extends OTP {
+
+  int interval;
+
   ///
   /// @param {secret}
   /// @type {String}
@@ -17,11 +20,15 @@ class TOTP extends OTP {
   /// @desc the time interval in seconds for OTP.
   /// This defaults to 30.
   ///
+  /// @param {digits}
+  /// @type {int}
+  /// @desc the length of the one-time password.
+  /// This defaults to 6.
+  ///
   /// @return {TOTP}
   ///
-  int _interval;
-  TOTP(String secret, [int interval = 30]) : super(secret) {
-    this._interval = interval;
+  TOTP(String secret, [int interval = 30, int digits = 6]) : super(secret, digits) {
+    this.interval = interval;
   }
 
   ///
@@ -35,7 +42,7 @@ class TOTP extends OTP {
   ///
   String now() {
     DateTime _now = DateTime.now();
-    int _formatTime = Util.timeFormat(_now, this._interval);
+    int _formatTime = Util.timeFormat(_now, this.interval);
 
     return super.generateOTP(_formatTime);
   }
@@ -65,7 +72,7 @@ class TOTP extends OTP {
     DateTime _time = time;
     _time ??= DateTime.now();
 
-    String otpTime = super.generateOTP(Util.timeFormat(_time, this._interval));
+    String otpTime = super.generateOTP(Util.timeFormat(_time, this.interval));
     if (otp == otpTime) {
       return true;
     }
