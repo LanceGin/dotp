@@ -31,7 +31,7 @@ dependencies:
 import 'package:dart_otp/dart_otp.dart';
 
 void main() {
-  TOTP totp = TOTP("J22U6B3WIWRRBTAV");
+  TOTP totp = TOTP(secret: "J22U6B3WIWRRBTAV");
   totp.now(); /// => 432143
 
   /// verify for the current time
@@ -48,7 +48,7 @@ void main() {
 import 'package:dart_otp/dart_otp.dart';
 
 void main() {
-  HOTP hotp = HOTP("J22U6B3WIWRRBTAV");
+  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV");
   hotp.at(0); /// => 432143
   hotp.at(1); /// => 231434
   hotp.at(2132); /// => 242432

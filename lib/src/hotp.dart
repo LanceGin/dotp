@@ -4,6 +4,7 @@
 ///
 
 import 'otp.dart';
+import 'package:meta/meta.dart';
 
 class HOTP extends OTP {
 
@@ -19,7 +20,7 @@ class HOTP extends OTP {
   ///
   /// @return {HOTP}
   ///
-  HOTP(String secret, [int digits = 6]) : super(secret, digits);
+  HOTP({ @required String secret, int digits = 6 }) : super(secret, digits);
 
   ///
   /// Generate the OTP with the given count
