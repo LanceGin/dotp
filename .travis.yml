@@ -5,8 +5,8 @@ install:
 jobs:
   include:
     - stage: analyze_and_test
-      name: "SDK: dev"
-      dart: "dev"
+      name: "SDK: stable"
+      dart: "stable"
       script: make
       after_success:
         - coveralls-lcov --repo-token $COVERALLS_TOKEN coverage/lcov.info

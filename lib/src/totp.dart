@@ -8,7 +8,6 @@ import 'util.dart';
 import 'package:meta/meta.dart';
 
 class TOTP extends OTP {
-
   int interval;
 
   ///
@@ -28,7 +27,7 @@ class TOTP extends OTP {
   ///
   /// @return {TOTP}
   ///
-  TOTP({ @required String secret, int interval = 30, int digits = 6 })
+  TOTP({@required String secret, int interval = 30, int digits = 6})
       : super(secret, digits) {
     this.interval = interval;
   }
@@ -60,7 +59,7 @@ class TOTP extends OTP {
   /// TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
   /// totp.value(date: DateTime.now()); // => 432143
   ///
-  String value({ DateTime date }) {
+  String value({DateTime date}) {
     if (date == null) return null;
 
     int _formatTime = Util.timeFormat(time: date, interval: interval);
@@ -88,10 +87,11 @@ class TOTP extends OTP {
   /// // Verify after 30s
   /// totp.verify(otp: 432143); // => false
   ///
-  bool verify({ String otp, DateTime time }) {
+  bool verify({String otp, DateTime time}) {
     DateTime _time = time ?? DateTime.now();
 
-    String otpTime = super.generateOTP(Util.timeFormat(time: _time, interval: interval));
+    String otpTime =
+        super.generateOTP(Util.timeFormat(time: _time, interval: interval));
     return otp == otpTime;
   }
 
