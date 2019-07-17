@@ -1,6 +1,6 @@
 name: dart_otp
 description: dart_otp is a dart package to generate and verify one-time passwords.
-version: 1.0.3
+version: 1.1.0
 author: Gin <gin.lance.inside@hotmail.com>
 
 homepage: https://github.com/BrunoMiguens/dart_otp
