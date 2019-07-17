@@ -19,7 +19,8 @@ class HOTP extends OTP {
   ///
   /// @return {HOTP}
   ///
-  HOTP({@required String secret, int digits = 6}) : super(secret, digits);
+  HOTP({@required String secret, int digits = 6})
+  : super(secret: secret, digits: digits);
 
   ///
   /// Generate the OTP with the given count
@@ -39,7 +40,7 @@ class HOTP extends OTP {
       return null;
     }
 
-    return super.generateOTP(counter);
+    return super.generateOTP(input: counter);
   }
 
   ///

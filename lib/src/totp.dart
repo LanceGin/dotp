@@ -28,7 +28,7 @@ class TOTP extends OTP {
   /// @return {TOTP}
   ///
   TOTP({@required String secret, int interval = 30, int digits = 6})
-      : super(secret, digits) {
+  : super(secret: secret, digits: digits) {
     this.interval = interval;
   }
 
@@ -43,7 +43,7 @@ class TOTP extends OTP {
   ///
   String now() {
     int _formatTime = Util.timeFormat(time: DateTime.now(), interval: interval);
-    return super.generateOTP(_formatTime);
+    return super.generateOTP(input: _formatTime);
   }
 
   ///
@@ -63,7 +63,7 @@ class TOTP extends OTP {
     if (date == null) return null;
 
     int _formatTime = Util.timeFormat(time: date, interval: interval);
-    return super.generateOTP(_formatTime);
+    return super.generateOTP(input: _formatTime);
   }
 
   ///
@@ -91,7 +91,7 @@ class TOTP extends OTP {
     DateTime _time = time ?? DateTime.now();
 
     String otpTime =
-        super.generateOTP(Util.timeFormat(time: _time, interval: interval));
+        super.generateOTP(input: Util.timeFormat(time: _time, interval: interval));
     return otp == otpTime;
   }
 
