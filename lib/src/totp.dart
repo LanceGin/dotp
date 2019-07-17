@@ -6,7 +6,6 @@
 import 'otp.dart';
 import 'otp_type.dart';
 import 'util.dart';
-import 'package:meta/meta.dart';
 
 class TOTP extends OTP {
   int interval;
@@ -31,7 +30,7 @@ class TOTP extends OTP {
   ///
   /// @return {TOTP}
   ///
-  TOTP({@required String secret, int interval = 30, int digits = 6})
+  TOTP({String secret, int interval = 30, int digits = 6})
       : super(secret: secret, digits: digits) {
     this.interval = interval;
   }
