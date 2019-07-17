@@ -95,8 +95,8 @@ abstract class OTP {
   String generateUrl({String issuer, String account}) {
     final _secret = this.secret;
     final _type = otpTypeValue(type: type);
-    final _account = Uri.encodeComponent(account);
-    final _issuer = Uri.encodeQueryComponent(issuer);
+    final _account = Uri.encodeComponent(account ?? '');
+    final _issuer = Uri.encodeQueryComponent(issuer ?? '');
 
     return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits';
   }

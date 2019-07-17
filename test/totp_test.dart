@@ -42,6 +42,18 @@ void main() {
     expect(totp.verify(otp: otpValue, time: time), true);
   });
 
+  test('[HOTP] Should generate token urls', () {
+    expect(totp.generateUrl(issuer: "Sample", account: "Account"),
+        "otpauth://totp/Account?secret=J22U6B3WIWRRBTAV&issuer=Sample&digits=6");
+    expect(
+        totp.generateUrl(issuer: "Encoded Issuer", account: "Account Detailed"),
+        "otpauth://totp/Account%20Detailed?secret=J22U6B3WIWRRBTAV&issuer=Encoded+Issuer&digits=6");
+
+    var token = TOTP(secret: "J22U6B3WIWRRBTAV", digits: 8, interval: 60);
+    expect(token.generateUrl(issuer: "More", account: "Digits"),
+        "otpauth://totp/Digits?secret=J22U6B3WIWRRBTAV&issuer=More&digits=8");
+  });
+
   test('[TOTP] Fail conditions', () {
     expect(() => TOTP(secret: null),
         throwsA(predicate((e) => e.toString().contains('secret != null'))));
@@ -51,5 +63,12 @@ void main() {
     expect(totp.value(date: null), null);
     expect(totp.verify(otp: null, time: null), false);
     expect(totp.verify(otp: null, time: DateTime.now()), false);
+
+    expect(totp.generateUrl(issuer: null, account: null),
+        "otpauth://totp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6");
+    expect(totp.generateUrl(issuer: null, account: ""),
+        "otpauth://totp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6");
+    expect(totp.generateUrl(issuer: "", account: null),
+        "otpauth://totp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6");
   });
 }
