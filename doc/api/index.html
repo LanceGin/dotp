@@ -58,7 +58,7 @@
 <a href="https://coveralls.io/github/BrunoMiguens/dart_otp?branch=master"><img src="https://coveralls.io/repos/github/BrunoMiguens/dart_otp/badge.svg?branch=master" alt="Coverage Status"></a></p>
 <p><code>dart_otp</code> is a dart package to generate and verify one-time passwords that were used to implement 2FA and MFA authentication method in web applications and other login-required systems.</p>
 <p>The package was implement based on <a href="https://tools.ietf.org/html/rfc4226">RFC4226</a> (HOTP: An HMAC-Based One-Time Password Algorithm) and <a href="https://tools.ietf.org/html/rfc6238">RFC6238</a> (TOTP: Time-Based One-Time Password Algorithm).</p>
-<h2 id="feature">Feature</h2><ul><li>Generate a <code>otpauth url</code> with the b32 encoded string</li><li>Create a HOTP object with verification</li><li>Verify a HOTP token</li><li>Create a TOTP object with verification</li><li>Verify a TOTP token</li></ul>
+<h2 id="feature">Feature</h2><ul><li>Generate a <code>otpauth url</code> with the b32 encoded string</li><li>Create and verify a HOTP object</li><li>Create and verify a TOTP object</li></ul>
 <h3 id="installation">Installation</h3>
 <h4 id="pubspec">Pubspec</h4>
 <p>Add <code>dart_otp</code> as a dependency in your <code>pubspec.yaml</code> file.</p>
@@ -80,10 +80,10 @@ void main() {
   totp.now(); /// =&gt; 432143
 
   /// verify for the current time
-  totp.verify(432143); /// =&gt; true
+  totp.verify(otp: 432143); /// =&gt; true
 
   /// verify after 30s
-  totp.verify(432143); /// =&gt; false
+  totp.verify(otp: 432143); /// =&gt; false
 }
 </code></pre>
 <h4 id="counter-based-otps">Counter-based OTPs</h4>
@@ -97,13 +97,13 @@ void main() {
   /// initialization for custom digit value
   HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
 
-  hotp.at(0); /// =&gt; 432143
-  hotp.at(1); /// =&gt; 231434
-  hotp.at(2132); /// =&gt; 242432
+  hotp.at(counter: 0); /// =&gt; 432143
+  hotp.at(counter: 1); /// =&gt; 231434
+  hotp.at(counter: 2132); /// =&gt; 242432
 
   /// verify with a counter
-  hotp.verify(242432, 2132); /// =&gt; true
-  hotp.verify(242432, 2133); /// =&gt; false
+  hotp.verify(otp: 242432, counter: 2132); /// =&gt; true
+  hotp.verify(otp: 242432, counter: 2133); /// =&gt; false
 }
 </code></pre>
 <h3 id="release-notes">Release notes</h3>

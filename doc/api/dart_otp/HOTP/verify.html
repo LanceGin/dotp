@@ -56,9 +56,10 @@
       <li class="section-title"><a href="dart_otp/HOTP-class.html#constructors">Constructors</a></li>
       <li><a href="dart_otp/HOTP/HOTP.html">HOTP</a></li>
     
-      <li class="section-title inherited">
+      <li class="section-title">
         <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/HOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
@@ -66,9 +67,9 @@
     
       <li class="section-title"><a href="dart_otp/HOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/HOTP/at.html">at</a></li>
-      <li><a href="dart_otp/HOTP/urlGen.html">urlGen</a></li>
       <li><a href="dart_otp/HOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/toString.html">toString</a></li>
     
@@ -86,7 +87,7 @@
     <section class="multi-line-signature">
       <span class="returntype">bool</span>
             <span class="name ">verify</span>
-(<wbr><span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span></span>)
+(<wbr>{<span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span></span> })
       
     </section>
     <section class="desc markdown">
@@ -99,23 +100,23 @@
 @desc the OTP HMAC counter</p>
 <p>@return {Boolean}</p>
 <p>@example
-TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
-totp.now(); // =&gt; 432143
+HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
+hotp.at(counter: 0); // =&gt; 432143
 // Verify for current time
-totp.verify(432143); // =&gt; true
+hotp.verify(otp: 432143, counter: 0); // =&gt; true
 // Verify after 30s
-totp.verify(432143); // =&gt; false</p>
+hotp.verify(otp: 432143, counter: 10); // =&gt; false</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">bool verify(String otp, int counter) {
-  String otpCount = this.at(counter);
-
-  if (otp == otpCount) {
-    return true;
+      <pre class="language-dart"><code class="language-dart">bool verify({String otp, int counter}) {
+  if (otp == null || counter == null) {
+    return false;
   }
-  return false;
+
+  String otpCount = this.at(counter: counter);
+  return otp == otpCount;
 }</code></pre>
     </section>
 
@@ -128,7 +129,7 @@ totp.verify(432143); // =&gt; false</p>
 
 <footer>
   <span class="no-break">
-    dart_otp 1.0.3
+    dart_otp 1.1.0
   </span>
 
   

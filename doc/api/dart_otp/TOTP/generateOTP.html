@@ -60,6 +60,7 @@
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
+      <li><a href="dart_otp/TOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -67,9 +68,10 @@
     
       <li class="section-title"><a href="dart_otp/TOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/TOTP/now.html">now</a></li>
-      <li><a href="dart_otp/TOTP/urlGen.html">urlGen</a></li>
+      <li><a href="dart_otp/TOTP/value.html">value</a></li>
       <li><a href="dart_otp/TOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/toString.html">toString</a></li>
     
@@ -87,7 +89,7 @@
     <section class="multi-line-signature">
       <span class="returntype">String</span>
             <span class="name ">generateOTP</span>
-(<wbr><span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span>)
+(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span> })
       <div class="features">inherited</div>
     </section>
     <section class="desc markdown">
@@ -103,7 +105,7 @@ counter or time.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">String generateOTP(int input) {
+      <pre class="language-dart"><code class="language-dart">String generateOTP({int input}) {
   &#47;&#47;&#47; base32 decode the secret
   var hmacKey = base32.decode(this.secret);
 
@@ -111,7 +113,7 @@ counter or time.</p>
   var hmacSha1 = Hmac(sha1, hmacKey);
 
   &#47;&#47;&#47; get hmac answer
-  var hmac = hmacSha1.convert(Util.intToBytelist(input)).bytes;
+  var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
 
   &#47;&#47;&#47; calculate the init offset
   int offset = hmac[hmac.length - 1] &amp; 0xf;
@@ -139,7 +141,7 @@ counter or time.</p>
 
 <footer>
   <span class="no-break">
-    dart_otp 1.0.3
+    dart_otp 1.1.0
   </span>
 
   

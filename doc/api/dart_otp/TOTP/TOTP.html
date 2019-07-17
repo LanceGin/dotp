@@ -88,7 +88,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">TOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-interval"><span class="type-annotation">int</span> <span class="parameter-name">interval</span>: <span class="default-value">30</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })
+      <span class="name ">TOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-interval"><span class="type-annotation">int</span> <span class="parameter-name">interval</span>: <span class="default-value">30</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })
     </section>
 
     <section class="desc markdown">
@@ -108,7 +108,7 @@ This defaults to 6.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">TOTP({@required String secret, int interval = 30, int digits = 6})
+      <pre class="language-dart"><code class="language-dart">TOTP({String secret, int interval = 30, int digits = 6})
     : super(secret: secret, digits: digits) {
   this.interval = interval;
 }</code></pre>
