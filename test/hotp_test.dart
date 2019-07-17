@@ -1,4 +1,5 @@
 import 'package:dart_otp/dart_otp.dart';
+import 'package:dart_otp/src/components/otp_algorithm.dart';
 import 'package:dart_otp/src/components/otp_type.dart';
 import 'package:test/test.dart';
 
@@ -9,14 +10,17 @@ void main() {
     expect(hotp.digits, 6);
     expect(hotp.type, OTPType.HOTP);
     expect(hotp.secret, "J22U6B3WIWRRBTAV");
+    expect(hotp.algorithm, OTPAlgorithm.SHA1);
   });
 
-  test('[HOTP] Should check the token with custom digits', () {
-    var token = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
+  test('[HOTP] Should check the token with custom digits and algorithm', () {
+    var token = HOTP(
+        secret: "J22U6B3WIWRRBTAV", digits: 8, algorithm: OTPAlgorithm.SHA256);
 
     expect(token.digits, 8);
-    expect(hotp.type, OTPType.HOTP);
+    expect(token.type, OTPType.HOTP);
     expect(token.secret, "J22U6B3WIWRRBTAV");
+    expect(token.algorithm, OTPAlgorithm.SHA256);
   });
 
   test('[HOTP] Should generate and verify using a specific counter', () {
@@ -49,8 +53,10 @@ void main() {
   test('[HOTP] Fail conditions', () {
     expect(() => HOTP(secret: null),
         throwsA(predicate((e) => e.toString().contains('secret != null'))));
-    expect(() => HOTP(secret: "", digits: null),
+    expect(() => HOTP(secret: '', digits: null),
         throwsA(predicate((e) => e.toString().contains('digits != null'))));
+    expect(() => HOTP(secret: '', digits: 0, algorithm: null),
+        throwsA(predicate((e) => e.toString().contains('algorithm != null'))));
 
     expect(hotp.at(counter: -1), null);
     expect(hotp.at(counter: null), null);

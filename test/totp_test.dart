@@ -1,4 +1,5 @@
 import 'package:dart_otp/dart_otp.dart';
+import 'package:dart_otp/src/components/otp_algorithm.dart';
 import 'package:dart_otp/src/components/otp_type.dart';
 import 'package:test/test.dart';
 
@@ -10,15 +11,23 @@ void main() {
     expect(totp.interval, 30);
     expect(totp.type, OTPType.TOTP);
     expect(totp.secret, "J22U6B3WIWRRBTAV");
+    expect(totp.algorithm, OTPAlgorithm.SHA1);
   });
 
-  test('[TOTP] Should check the token with custom digits and interval', () {
-    var token = TOTP(secret: "J22U6B3WIWRRBTAV", digits: 8, interval: 60);
+  test(
+      '[TOTP] Should check the token with custom digits, interval and algorithm',
+      () {
+    var token = TOTP(
+        secret: "J22U6B3WIWRRBTAV",
+        digits: 8,
+        interval: 60,
+        algorithm: OTPAlgorithm.SHA256);
 
     expect(token.digits, 8);
     expect(token.interval, 60);
-    expect(totp.type, OTPType.TOTP);
+    expect(token.type, OTPType.TOTP);
     expect(token.secret, "J22U6B3WIWRRBTAV");
+    expect(token.algorithm, OTPAlgorithm.SHA256);
   });
 
   test('[TOTP] Should generate the token using current time', () {
@@ -58,8 +67,10 @@ void main() {
   test('[TOTP] Fail conditions', () {
     expect(() => TOTP(secret: null),
         throwsA(predicate((e) => e.toString().contains('secret != null'))));
-    expect(() => TOTP(secret: "", digits: null),
+    expect(() => TOTP(secret: '', digits: null),
         throwsA(predicate((e) => e.toString().contains('digits != null'))));
+    expect(() => HOTP(secret: '', digits: 0, algorithm: null),
+        throwsA(predicate((e) => e.toString().contains('algorithm != null'))));
 
     expect(totp.value(date: null), null);
     expect(totp.verify(otp: null, time: null), false);
