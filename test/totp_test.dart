@@ -34,4 +34,15 @@ void main() {
     expect(totp.verify(otp: otpValue), false);
     expect(totp.verify(otp: otpValue, time: time), true);
   });
+
+  test('[TOTP] Fail conditions', () {
+    expect(() => TOTP(secret: null),
+        throwsA(predicate((e) => e.toString().contains('secret != null'))));
+    expect(() => TOTP(secret: "", digits: null),
+        throwsA(predicate((e) => e.toString().contains('digits != null'))));
+
+    expect(totp.value(date: null), null);
+    expect(totp.verify(otp: null, time: null), false);
+    expect(totp.verify(otp: null, time: DateTime.now()), false);
+  });
 }

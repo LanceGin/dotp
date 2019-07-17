@@ -30,8 +30,10 @@ abstract class OTP {
   /// only to be "sha1"
   ///
   ///
-  OTP({ String secret, int digits = 6 })
-  : assert(secret != null), assert(digits != null), assert(digits > 0) {
+  OTP({String secret, int digits = 6})
+      : assert(secret != null),
+        assert(digits != null),
+        assert(digits > 0) {
     this.secret = secret;
     this.digits = digits;
   }
@@ -48,7 +50,7 @@ abstract class OTP {
   ///
   /// @return {String}
   ///
-  String generateOTP({ int input }) {
+  String generateOTP({int input}) {
     /// base32 decode the secret
     var hmacKey = base32.decode(this.secret);
 

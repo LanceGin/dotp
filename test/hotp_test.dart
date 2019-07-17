@@ -28,4 +28,17 @@ void main() {
     expect(hotp.verify(otp: otpValue, counter: 10), true);
     expect(hotp.verify(otp: otpValue, counter: 20), false);
   });
+
+  test('[HOTP] Fail conditions', () {
+    expect(() => HOTP(secret: null),
+        throwsA(predicate((e) => e.toString().contains('secret != null'))));
+    expect(() => HOTP(secret: "", digits: null),
+        throwsA(predicate((e) => e.toString().contains('digits != null'))));
+
+    expect(hotp.at(counter: -1), null);
+    expect(hotp.at(counter: null), null);
+    expect(hotp.verify(otp: null, counter: null), false);
+    expect(hotp.verify(otp: null, counter: -1), false);
+    expect(hotp.verify(otp: "", counter: -1), false);
+  });
 }

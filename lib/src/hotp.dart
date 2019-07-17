@@ -20,7 +20,7 @@ class HOTP extends OTP {
   /// @return {HOTP}
   ///
   HOTP({@required String secret, int digits = 6})
-  : super(secret: secret, digits: digits);
+      : super(secret: secret, digits: digits);
 
   ///
   /// Generate the OTP with the given count
@@ -65,7 +65,9 @@ class HOTP extends OTP {
   /// hotp.verify(otp: 432143, counter: 10); // => false
   ///
   bool verify({String otp, int counter}) {
-    if (otp == null || counter == null) return null;
+    if (otp == null || counter == null) {
+      return false;
+    }
 
     String otpCount = this.at(counter: counter);
     return otp == otpCount;
