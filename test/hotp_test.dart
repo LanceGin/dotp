@@ -8,16 +8,23 @@ void main() {
 
   test('[HOTP] Should check the token with default digits', () {
     expect(hotp.digits, 6);
+    expect(hotp.counter, 0);
     expect(hotp.type, OTPType.HOTP);
     expect(hotp.secret, "J22U6B3WIWRRBTAV");
     expect(hotp.algorithm, OTPAlgorithm.SHA1);
   });
 
-  test('[HOTP] Should check the token with custom digits and algorithm', () {
+  test(
+      '[HOTP] Should check the token with custom digits, counter and algorithm',
+      () {
     var token = HOTP(
-        secret: "J22U6B3WIWRRBTAV", digits: 8, algorithm: OTPAlgorithm.SHA256);
+        secret: "J22U6B3WIWRRBTAV",
+        digits: 8,
+        counter: 50,
+        algorithm: OTPAlgorithm.SHA256);
 
     expect(token.digits, 8);
+    expect(token.counter, 50);
     expect(token.type, OTPType.HOTP);
     expect(token.secret, "J22U6B3WIWRRBTAV");
     expect(token.algorithm, OTPAlgorithm.SHA256);
