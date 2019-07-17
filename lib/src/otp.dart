@@ -55,7 +55,7 @@ abstract class OTP {
     var hmacSha1 = Hmac(sha1, hmacKey);
 
     /// get hmac answer
-    var hmac = hmacSha1.convert(Util.intToBytelist(input)).bytes;
+    var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
 
     /// calculate the init offset
     int offset = hmac[hmac.length - 1] & 0xf;
