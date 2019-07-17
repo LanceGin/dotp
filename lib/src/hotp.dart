@@ -18,10 +18,19 @@ class HOTP extends OTP {
   /// @type {String}
   /// @desc random base32-encoded key to generate OTP.
   ///
+  /// @param {counter}
+  /// @type {int}
+  /// @desc the counter value for OTP.
+  /// This defaults to 0.
+  ///
   /// @param {digits}
   /// @type {int}
   /// @desc the length of the one-time password.
   /// This defaults to 6.
+  ///
+  /// @param {algorithm}
+  /// @type {OTPAlgorithm}
+  /// @desc the algorithm to be used on HMAC encoding, dedault to be SHA1
   ///
   /// @return {HOTP}
   ///

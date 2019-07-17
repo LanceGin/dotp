@@ -28,10 +28,9 @@ abstract class OTP {
   /// @type {int}
   /// @desc the length of the one-time password, default to be 6
   ///
-  /// @param {digest}
-  /// @type {String}
-  /// @desc the key that be used to do HMAC encoding, dedault and
-  /// only to be "sha1"
+  /// @param {algorithm}
+  /// @type {OTPAlgorithm}
+  /// @desc the algorithm to be used on HMAC encoding, dedault to be SHA1
   ///
   ///
   OTP(

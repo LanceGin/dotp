@@ -29,6 +29,10 @@ class TOTP extends OTP {
   /// @desc the length of the one-time password.
   /// This defaults to 6.
   ///
+  /// @param {algorithm}
+  /// @type {OTPAlgorithm}
+  /// @desc the algorithm to be used on HMAC encoding, dedault to be SHA1
+  ///
   /// @return {TOTP}
   ///
   TOTP(
