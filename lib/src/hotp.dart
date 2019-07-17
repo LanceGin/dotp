@@ -35,7 +35,9 @@ class HOTP extends OTP {
   /// hotp.at(counter: 0); // => 432143
   ///
   String at({int counter}) {
-    if (counter == null) return null;
+    if (counter == null || counter < 0) {
+      return null;
+    }
 
     return super.generateOTP(counter);
   }
