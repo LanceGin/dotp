@@ -21,6 +21,8 @@ void main() {
 
   test('[HOTP] Should generate and verify using a specific counter', () {
     var otpValue = hotp.at(counter: 0);
+
+    expect(otpValue, '542773');
     expect(hotp.verify(otp: otpValue, counter: 0), true);
   });
 
