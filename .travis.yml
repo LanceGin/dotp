@@ -1,50 +1,33 @@
 language: dart
+sudo: required
 
 jobs:
   include:
     - stage: analyze
       name: "SDK: dev; TASKS: `dartanalyzer --fatal-warnings .`"
       dart: "dev"
+      env: PKGS="./"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
       name: "SDK: 2.2.0; TASKS: `dartanalyzer --fatal-warnings .`"
       dart: "2.2.0"
-      script: ./tool/travis.sh dartanalyzer
-    - stage: analyze
-      name: "SDK: 2.1.0; TASKS: `dartanalyzer --fatal-warnings .`"
-      dart: "2.1.0"
+      env: PKGS="./"
       script: ./tool/travis.sh dartanalyzer
 
-    - stage: format
-      name: "SDK: dev; TASKS: `dartfmt -n --set-exit-if-changed .`"
-      dart: "dev"
-      script: ./tool/travis.sh dartfmt
-    - stage: format
-      name: "SDK: 2.2.0; TASKS: `dartfmt -n --set-exit-if-changed .`"
-      dart: "2.2.0"
-      script: ./tool/travis.sh dartfmt
-    - stage: format
-      name: "SDK: 2.1.0; TASKS: `dartfmt -n --set-exit-if-changed .`"
-      dart: "2.1.0"
-      script: ./tool/travis.sh dartfmt
-
-    - stage: unit_test
-      name: "SDK: dev; TASKS: `pub run test --preset travis`"
+    - stage: test
+      name: "SDK: dev; TASKS: `pub run test`"
       dart: dev
+      env: PKGS="./"
       script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: 2.2.0; TASKS: `dpub run test --preset travis`"
+    - stage: test
+      name: "SDK: 2.2.0; TASKS: `pub run test`"
       dart: "2.2.0"
-      script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: 2.1.0; TASKS: `pub run test --preset travis`"
-      dart: "2.1.0"
+      env: PKGS="./"
       script: ./tool/travis.sh test
 
 stages:
   - analyze
-  - format
-  - unit_test
+  - test
 
 cache:
   directories:
