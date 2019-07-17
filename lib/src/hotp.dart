@@ -8,6 +8,8 @@ import 'package:dart_otp/src/components/otp_type.dart';
 import 'package:dart_otp/src/components/otp_algorithm.dart';
 
 class HOTP extends OTP {
+  int counter;
+
   @override
   OTPType get type => OTPType.HOTP;
 
@@ -25,9 +27,12 @@ class HOTP extends OTP {
   ///
   HOTP(
       {String secret,
+      int counter = 0,
       int digits = 6,
       OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
-      : super(secret: secret, digits: digits, algorithm: algorithm);
+      : super(secret: secret, digits: digits, algorithm: algorithm) {
+    this.counter = counter;
+  }
 
   ///
   /// Generate the OTP with the given count
