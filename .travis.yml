@@ -1,33 +1,29 @@
 language: dart
-sudo: required
-
+install:
+  - gem install coveralls-lcov
+  
 jobs:
   include:
-    - stage: analyze
-      name: "SDK: dev; TASKS: `dartanalyzer --fatal-warnings .`"
+    - stage: analyze_and_test
+      name: "SDK: dev"
       dart: "dev"
-      env: PKGS="./"
-      script: ./tool/travis.sh dartanalyzer
-    - stage: analyze
-      name: "SDK: 2.2.0; TASKS: `dartanalyzer --fatal-warnings .`"
+      script: make
+      after_success:
+        - coveralls-lcov --repo-token $COVERALLS_TOKEN coverage/lcov.info
+    - stage: analyze_and_test
+      name: "SDK: 2.4.0"
+      dart: "2.4.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.3.0"
+      dart: "2.3.0"
+    - stage: analyze_and_test
+      name: "SDK: 2.2.0"
       dart: "2.2.0"
-      env: PKGS="./"
-      script: ./tool/travis.sh dartanalyzer
-
-    - stage: test
-      name: "SDK: dev; TASKS: `pub run test`"
-      dart: dev
-      env: PKGS="./"
-      script: ./tool/travis.sh test
-    - stage: test
-      name: "SDK: 2.2.0; TASKS: `pub run test`"
-      dart: "2.2.0"
-      env: PKGS="./"
-      script: ./tool/travis.sh test
+      script: make
 
 stages:
-  - analyze
-  - test
+  - analyze_and_test
 
 cache:
   directories:
