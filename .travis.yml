@@ -1,7 +1,7 @@
 language: dart
 install:
   - gem install coveralls-lcov
-  
+
 jobs:
   include:
     - stage: analyze_and_test
@@ -17,6 +17,7 @@ jobs:
     - stage: analyze_and_test
       name: "SDK: 2.3.0"
       dart: "2.3.0"
+      script: make
     - stage: analyze_and_test
       name: "SDK: 2.2.0"
       dart: "2.2.0"
