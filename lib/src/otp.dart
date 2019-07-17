@@ -10,7 +10,6 @@ import 'package:dart_otp/src/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
-
   String secret;
   int digits;
 
@@ -94,13 +93,11 @@ abstract class OTP {
   /// @return {String}
   ///
   String generateUrl({String issuer, String account}) {
-
     final _secret = this.secret;
     final _type = otpTypeValue(type: type);
     final _account = Uri.encodeComponent(account);
     final _issuer = Uri.encodeQueryComponent(issuer);
 
     return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits';
-
   }
 }

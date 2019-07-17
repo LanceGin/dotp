@@ -1,15 +1,13 @@
-import 'package:dart_otp/src/otp_type.dart';
-
 ///
 /// @module   : HOTP module to generate and verify HOTP password
 /// @author   : Gin (gin.lance.inside@hotmail.com)
 ///
 
 import 'otp.dart';
+import 'package:dart_otp/src/otp_type.dart';
 import 'package:meta/meta.dart';
 
 class HOTP extends OTP {
-
   @override
   OTPType get type => OTPType.HOTP;
 

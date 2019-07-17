@@ -1,4 +1,5 @@
 import 'package:dart_otp/dart_otp.dart';
+import 'package:dart_otp/src/otp_type.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -6,6 +7,7 @@ void main() {
 
   test('[HOTP] Should check the token with default digits', () {
     expect(hotp.digits, 6);
+    expect(hotp.type, OTPType.HOTP);
     expect(hotp.secret, "J22U6B3WIWRRBTAV");
   });
 
@@ -13,6 +15,7 @@ void main() {
     var token = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
 
     expect(token.digits, 8);
+    expect(hotp.type, OTPType.HOTP);
     expect(token.secret, "J22U6B3WIWRRBTAV");
   });
 

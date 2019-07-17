@@ -1,4 +1,5 @@
 import 'package:dart_otp/dart_otp.dart';
+import 'package:dart_otp/src/otp_type.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,6 +8,7 @@ void main() {
   test('[TOTP] Should check the token with default digits and interval', () {
     expect(totp.digits, 6);
     expect(totp.interval, 30);
+    expect(totp.type, OTPType.TOTP);
     expect(totp.secret, "J22U6B3WIWRRBTAV");
   });
 
@@ -15,6 +17,7 @@ void main() {
 
     expect(token.digits, 8);
     expect(token.interval, 60);
+    expect(totp.type, OTPType.TOTP);
     expect(token.secret, "J22U6B3WIWRRBTAV");
   });
 
