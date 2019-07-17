@@ -4,7 +4,7 @@
 ///
 
 import 'otp.dart';
-import 'otp_type.dart';
+import 'components/otp_type.dart';
 import 'util.dart';
 
 class TOTP extends OTP {

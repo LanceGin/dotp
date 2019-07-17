@@ -4,7 +4,7 @@
 ///
 
 import 'otp.dart';
-import 'package:dart_otp/src/otp_type.dart';
+import 'package:dart_otp/src/components/otp_type.dart';
 
 class HOTP extends OTP {
   @override

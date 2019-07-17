@@ -6,7 +6,8 @@
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:base32/base32.dart';
-import 'package:dart_otp/src/otp_type.dart';
+import 'package:dart_otp/src/components/otp_algorithm.dart';
+import 'package:dart_otp/src/components/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
@@ -53,12 +54,12 @@ abstract class OTP {
   ///
   /// @return {String}
   ///
-  String generateOTP({int input}) {
+  String generateOTP({int input, OTPAlgorithm algorithm = OTPAlgorithm.SHA1}) {
     /// base32 decode the secret
     var hmacKey = base32.decode(this.secret);
 
     /// initial the HMAC-SHA1 object
-    var hmacSha1 = Hmac(sha1, hmacKey);
+    var hmacSha1 = createHmacFor(algorithm: algorithm, key: hmacKey);
 
     /// get hmac answer
     var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
