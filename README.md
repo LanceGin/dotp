@@ -1,5 +1,7 @@
 # dart_otp
 
+[![Build Status](https://travis-ci.org/BrunoMiguens/dart_otp.svg?branch=master)](https://travis-ci.org/BrunoMiguens/dart_otp)
+
 `dart_otp` is a dart package to generate and verify one-time passwords that were used to implement 2FA and MFA authentication method in web applications and other login-required systems.
 
 The package was implement based on [RFC4226](https://tools.ietf.org/html/rfc4226) (HOTP: An HMAC-Based One-Time Password Algorithm) and [RFC6238](https://tools.ietf.org/html/rfc6238) (TOTP: Time-Based One-Time Password Algorithm).
