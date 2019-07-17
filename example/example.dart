@@ -5,5 +5,5 @@ void main() {
   HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV");
 
   print(totp.now());
-  print(hotp.at(2018));
+  print(hotp.at(counter: 2018));
 }
