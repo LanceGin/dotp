@@ -21,6 +21,10 @@ void main() {
     expect(token.secret, "J22U6B3WIWRRBTAV");
   });
 
+  test('[TOTP] Should generate the token using current time', () {
+    expect(totp.now(), isNotNull);
+  });
+
   test('[TOTP] Should generate and verify using a specific date time', () {
     var time = DateTime.now();
     var otpValue = totp.value(date: time);
