@@ -1,3 +1,5 @@
+import 'package:dart_otp/src/otp_type.dart';
+
 ///
 /// @module   : HOTP module to generate and verify HOTP password
 /// @author   : Gin (gin.lance.inside@hotmail.com)
@@ -7,6 +9,10 @@ import 'otp.dart';
 import 'package:meta/meta.dart';
 
 class HOTP extends OTP {
+
+  @override
+  OTPType get type => OTPType.HOTP;
+
   ///
   /// @param {secret}
   /// @type {String}
@@ -71,21 +77,5 @@ class HOTP extends OTP {
 
     String otpCount = this.at(counter: counter);
     return otp == otpCount;
-  }
-
-  ///
-  /// Generate a url with TOTP instance.
-  ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc maybe it is the Service name
-  ///
-  /// @return {String}
-  ///
-  @override
-  String urlGen(String _issuer, String _type) {
-    _issuer ??= '';
-    _type = 'totp';
-    return super.urlGen(_issuer, _type);
   }
 }

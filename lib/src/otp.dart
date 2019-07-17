@@ -6,11 +6,15 @@
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:base32/base32.dart';
+import 'package:dart_otp/src/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
+
   String secret;
   int digits;
+
+  OTPType get type;
 
   ///
   /// This constructor will create OTP instance.
@@ -77,20 +81,26 @@ abstract class OTP {
   }
 
   ///
-  /// Generate a url with TOTP or HOTP instance.
+  /// Generate a url with TOTP instance.
   ///
   /// @param {issuer}
   /// @type {String}
-  /// @desc maybe it is the Service name
+  /// @desc Service name
   ///
-  /// @param {type}
+  /// @param {account}
   /// @type {String}
-  /// @desc type of OTP instance
+  /// @desc Service identifier or detail
   ///
   /// @return {String}
   ///
-  String urlGen(String _issuer, String _type) {
+  String generateUrl({String issuer, String account}) {
+
     final _secret = this.secret;
-    return 'otpauth://$_type/SK?secret=$_secret&issuer=$_issuer';
+    final _type = otpTypeValue(type: type);
+    final _account = Uri.encodeComponent(account);
+    final _issuer = Uri.encodeQueryComponent(issuer);
+
+    return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits';
+
   }
 }

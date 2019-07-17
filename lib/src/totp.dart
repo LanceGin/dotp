@@ -4,11 +4,15 @@
 ///
 
 import 'otp.dart';
+import 'otp_type.dart';
 import 'util.dart';
 import 'package:meta/meta.dart';
 
 class TOTP extends OTP {
   int interval;
+
+  @override
+  OTPType get type => OTPType.TOTP;
 
   ///
   /// @param {secret}
@@ -99,21 +103,5 @@ class TOTP extends OTP {
     String otpTime = super
         .generateOTP(input: Util.timeFormat(time: _time, interval: interval));
     return otp == otpTime;
-  }
-
-  ///
-  /// Generate a url with TOTP instance.
-  ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc maybe it is the Service name
-  ///
-  /// @return {String}
-  ///
-  @override
-  String urlGen(String _issuer, String _type) {
-    _issuer ??= '';
-    _type = 'totp';
-    return super.urlGen(_issuer, _type);
   }
 }
