@@ -6,6 +6,7 @@
 import 'otp.dart';
 import 'components/otp_type.dart';
 import 'util.dart';
+import 'package:dart_otp/src/components/otp_algorithm.dart';
 
 class TOTP extends OTP {
   int interval;
@@ -30,8 +31,12 @@ class TOTP extends OTP {
   ///
   /// @return {TOTP}
   ///
-  TOTP({String secret, int interval = 30, int digits = 6})
-      : super(secret: secret, digits: digits) {
+  TOTP(
+      {String secret,
+      int interval = 30,
+      int digits = 6,
+      OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
+      : super(secret: secret, digits: digits, algorithm: algorithm) {
     this.interval = interval;
   }
 

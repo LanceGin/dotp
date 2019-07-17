@@ -4,15 +4,15 @@
 ///
 
 import 'dart:math';
-import 'package:crypto/crypto.dart';
 import 'package:base32/base32.dart';
 import 'package:dart_otp/src/components/otp_algorithm.dart';
 import 'package:dart_otp/src/components/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
-  String secret;
   int digits;
+  String secret;
+  OTPAlgorithm algorithm;
 
   OTPType get type;
 
@@ -34,12 +34,17 @@ abstract class OTP {
   /// only to be "sha1"
   ///
   ///
-  OTP({String secret, int digits = 6})
+  OTP(
+      {String secret,
+      int digits = 6,
+      OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
       : assert(secret != null),
         assert(digits != null),
+        assert(algorithm != null),
         assert(digits > 0) {
     this.secret = secret;
     this.digits = digits;
+    this.algorithm = algorithm;
   }
 
   ///
