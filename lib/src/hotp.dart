@@ -25,18 +25,22 @@ class HOTP extends OTP {
   ///
   /// Generate the OTP with the given count
   ///
-  /// @param {count}
+  /// @param {counter}
   /// @type {int}
   /// @desc the OTP HMAC counter
   ///
   /// @return {String}
   ///
   /// @example
-  /// HOTP hotp = dotp.HOTP('BASE32_ENCODED_SECRET');
-  /// hotp.at(0); // => 432143
+  /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
+  /// hotp.at(counter: 0); // => 432143
   ///
-  String at(int count) {
-    return super.generateOTP(count);
+  String at({ int counter }) {
+
+    if (counter == null) return null;
+    
+    return super.generateOTP(counter);
+
   }
 
   ///
@@ -53,20 +57,19 @@ class HOTP extends OTP {
   /// @return {Boolean}
   ///
   /// @example
-  /// TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
-  /// totp.now(); // => 432143
+  /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
+  /// hotp.at(counter: 0); // => 432143
   /// // Verify for current time
-  /// totp.verify(432143); // => true
+  /// hotp.verify(otp: 432143, counter: 0); // => true
   /// // Verify after 30s
-  /// totp.verify(432143); // => false
+  /// hotp.verify(otp: 432143, counter: 10); // => false
   ///
-  bool verify(String otp, int counter) {
-    String otpCount = this.at(counter);
+  bool verify({ String otp, int counter }) {
 
-    if (otp == otpCount) {
-      return true;
-    }
-    return false;
+    if (otp == null || counter == null) return null;
+
+    String otpCount = this.at(counter: counter);
+    return otp == otpCount;
   }
 
   ///
