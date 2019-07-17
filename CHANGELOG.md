@@ -13,3 +13,12 @@
 * Add documentation
 * Minor code style enhancements
 * Make interval and digits properties public for time based tokens
+
+## [1.1.0]
+
+* Add unit tests
+* Update documentation
+* Update components API
+* Refactor some components
+* Minor code style enhancements
+* Increase options export option for generate url function

@@ -54,21 +54,29 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="dart_otp">dart_otp</h1>
+<p><a href="https://travis-ci.org/BrunoMiguens/dart_otp"><img src="https://travis-ci.org/BrunoMiguens/dart_otp.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/BrunoMiguens/dart_otp?branch=master"><img src="https://coveralls.io/repos/github/BrunoMiguens/dart_otp/badge.svg?branch=master" alt="Coverage Status"></a></p>
 <p><code>dart_otp</code> is a dart package to generate and verify one-time passwords that were used to implement 2FA and MFA authentication method in web applications and other login-required systems.</p>
 <p>The package was implement based on <a href="https://tools.ietf.org/html/rfc4226">RFC4226</a> (HOTP: An HMAC-Based One-Time Password Algorithm) and <a href="https://tools.ietf.org/html/rfc6238">RFC6238</a> (TOTP: Time-Based One-Time Password Algorithm).</p>
-<h3 id="feature">Feature</h3><ul><li>Generate a <code>otpauth url</code> with the b32 encoded string</li><li>Create a HOTP object with verification</li><li>Verify a HOTP token</li><li>Create a TOTP object with verification</li><li>Verify a TOTP token</li></ul>
+<h2 id="feature">Feature</h2><ul><li>Generate a <code>otpauth url</code> with the b32 encoded string</li><li>Create a HOTP object with verification</li><li>Verify a HOTP token</li><li>Create a TOTP object with verification</li><li>Verify a TOTP token</li></ul>
 <h3 id="installation">Installation</h3>
 <h4 id="pubspec">Pubspec</h4>
 <p>Add <code>dart_otp</code> as a dependency in your <code>pubspec.yaml</code> file.</p>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-  dart_otp: ^1.0.2
+  dart_otp: ^1.1.0
 </code></pre>
 <h3 id="example">Example</h3>
 <h4 id="time-based-otps">Time-based OTPs</h4>
 <pre class="language-dart"><code class="language-dart">import 'package:dart_otp/dart_otp.dart';
 
 void main() {
-  TOTP totp = TOTP("J22U6B3WIWRRBTAV");
+
+  /// default initialization for intervals of 30 seconds and 6 digit tokens
+  TOTP totp = TOTP(secret: "J22U6B3WIWRRBTAV");
+
+  /// initialization for custom interval and digit values
+  TOTP totp = TOTP(secret: "J22U6B3WIWRRBTAV", interval: 60, digits: 8);
+
   totp.now(); /// =&gt; 432143
 
   /// verify for the current time
@@ -82,7 +90,13 @@ void main() {
 <pre class="language-dart"><code class="language-dart">import 'package:dart_otp/dart_otp.dart';
 
 void main() {
-  HOTP hotp = HOTP("J22U6B3WIWRRBTAV");
+
+  /// default initialization 6 digit tokens
+  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV");
+
+  /// initialization for custom digit value
+  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
+
   hotp.at(0); /// =&gt; 432143
   hotp.at(1); /// =&gt; 231434
   hotp.at(2132); /// =&gt; 242432
@@ -91,63 +105,6 @@ void main() {
   hotp.verify(242432, 2132); /// =&gt; true
   hotp.verify(242432, 2133); /// =&gt; false
 }
-</code></pre>
-<h3 id="api">Api</h3>
-<h4 id="-totpstring-secret-int-interval-int-digitshttpsgithubcombrunomiguensdart_otpblobmasterlibsrctotpdartl23">• [TOTP(String secret, <code>int interval, int digits</code>)](<a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L23">https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L23</a>)</h4>
-<pre class="language-dart"><code>param: secret
-type: String
-param: interval = 30
-type: int
-param: digits = 6
-type: int
-return: TOTP
-desc: generate TOTP instance.
-</code></pre>
-<h4 id="-totpnowhttpsgithubcombrunomiguensdart_otpblobmasterlibsrctotpdartl36">• <a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L36">TOTP.now()</a></h4>
-<pre class="language-dart"><code>return: String
-desc: get the one-time password with current time.
-</code></pre>
-<h4 id="-totpverifystring-otp-datetime-timehttpsgithubcombrunomiguensdart_otpblobmasterlibsrctotpdartl64">• [TOTP.verify(String otp, <code>Datetime time</code>)](<a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L64">https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L64</a>)</h4>
-<pre class="language-dart"><code>param: otp
-type: String
-param: time
-type: Datetime
-return: Boolean
-desc: verify the totp code.
-</code></pre>
-<h4 id="-totpurlgenstring-issuerhttpsgithubcombrunomiguensdart_otpblobmasterlibsrctotpdartl85">• <a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/totp.dart#L85">TOTP.urlGen(String issuer)</a></h4>
-<pre class="language-dart"><code>param: issuer
-type: String
-return: String
-desc: generate url with TOTP instance
-</code></pre>
-<h4 id="-hotpstring-secret-int-digitshttpsgithubcombrunomiguensdart_otpblobmasterlibsrchotpdartl10">• [HOTP(String secret, <code>int digits</code>)](<a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/hotp.dart#L10">https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/hotp.dart#L10</a>)</h4>
-<pre class="language-dart"><code>param: secret
-type: String
-param: digits = 6
-type: int
-return: HOTP
-desc: generate HOTP instance.
-</code></pre>
-<h4 id="-hotpatint-counterhttpsgithubcombrunomiguensdart-_tpblobmasterlibsrchotpdartl25">• <a href="https://github.com/BrunoMiguens/dart-_tp/blob/master/lib/src/hotp.dart#L25">HOTP.at(int counter)</a></h4>
-<pre class="language-dart"><code>param: counter
-type: int
-return: String
-desc: generate one-time password with counter.
-</code></pre>
-<h4 id="-hotpverifystring-otp-int-counterhttpsgithubcombrunomiguensdart_otpblobmasterlibsrchotpdartl50">• <a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/hotp.dart#L50">HOTP.verify(String otp, int counter)</a></h4>
-<pre class="language-dart"><code>param: otp
-type: String
-param: counter
-type: int
-return: Boolean
-desc: verify the hotp code.
-</code></pre>
-<h4 id="-hotpurlgenstring-issuerhttpsgithubcombrunomiguensdart_otpblobmasterlibsrchotpdartl69">• <a href="https://github.com/BrunoMiguens/dart_otp/blob/master/lib/src/hotp.dart#L69">HOTP.urlGen(String issuer)</a></h4>
-<pre class="language-dart"><code>param: issuer
-type: String
-return: String
-desc: generate url with HOTP instance
 </code></pre>
 <h3 id="release-notes">Release notes</h3>
 <p>See <a href="./CHANGELOG.md">CHANGELOG.md</a>.</p>
@@ -176,7 +133,7 @@ desc: generate url with HOTP instance
 
 <footer>
   <span class="no-break">
-    dart_otp 1.0.3
+    dart_otp 1.1.0
   </span>
 
   

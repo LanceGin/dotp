@@ -4,8 +4,11 @@
 ///
 
 import 'otp.dart';
+import 'package:dart_otp/src/otp_type.dart';
 
 class HOTP extends OTP {
+  @override
+  OTPType get type => OTPType.HOTP;
 
   ///
   /// @param {secret}
@@ -19,23 +22,27 @@ class HOTP extends OTP {
   ///
   /// @return {HOTP}
   ///
-  HOTP(String secret, [int digits = 6]) : super(secret, digits);
+  HOTP({String secret, int digits = 6}) : super(secret: secret, digits: digits);
 
   ///
   /// Generate the OTP with the given count
   ///
-  /// @param {count}
+  /// @param {counter}
   /// @type {int}
   /// @desc the OTP HMAC counter
   ///
   /// @return {String}
   ///
   /// @example
-  /// HOTP hotp = dotp.HOTP('BASE32_ENCODED_SECRET');
-  /// hotp.at(0); // => 432143
+  /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
+  /// hotp.at(counter: 0); // => 432143
   ///
-  String at(int count) {
-    return super.generateOTP(count);
+  String at({int counter}) {
+    if (counter == null || counter < 0) {
+      return null;
+    }
+
+    return super.generateOTP(input: counter);
   }
 
   ///
@@ -52,35 +59,19 @@ class HOTP extends OTP {
   /// @return {Boolean}
   ///
   /// @example
-  /// TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
-  /// totp.now(); // => 432143
+  /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
+  /// hotp.at(counter: 0); // => 432143
   /// // Verify for current time
-  /// totp.verify(432143); // => true
+  /// hotp.verify(otp: 432143, counter: 0); // => true
   /// // Verify after 30s
-  /// totp.verify(432143); // => false
+  /// hotp.verify(otp: 432143, counter: 10); // => false
   ///
-  bool verify(String otp, int counter) {
-    String otpCount = this.at(counter);
-
-    if (otp == otpCount) {
-      return true;
+  bool verify({String otp, int counter}) {
+    if (otp == null || counter == null) {
+      return false;
     }
-    return false;
-  }
 
-  ///
-  /// Generate a url with TOTP instance.
-  ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc maybe it is the Service name
-  ///
-  /// @return {String}
-  ///
-  @override
-  String urlGen(String _issuer, String _type) {
-    _issuer ??= '';
-    _type = 'totp';
-    return super.urlGen(_issuer, _type);
+    String otpCount = this.at(counter: counter);
+    return otp == otpCount;
   }
 }

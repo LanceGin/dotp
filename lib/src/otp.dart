@@ -6,12 +6,14 @@
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:base32/base32.dart';
+import 'package:dart_otp/src/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
-
   String secret;
   int digits;
+
+  OTPType get type;
 
   ///
   /// This constructor will create OTP instance.
@@ -31,7 +33,10 @@ abstract class OTP {
   /// only to be "sha1"
   ///
   ///
-  OTP(String secret, [int digits = 6]) {
+  OTP({String secret, int digits = 6})
+      : assert(secret != null),
+        assert(digits != null),
+        assert(digits > 0) {
     this.secret = secret;
     this.digits = digits;
   }
@@ -48,7 +53,7 @@ abstract class OTP {
   ///
   /// @return {String}
   ///
-  String generateOTP(int input) {
+  String generateOTP({int input}) {
     /// base32 decode the secret
     var hmacKey = base32.decode(this.secret);
 
@@ -56,7 +61,7 @@ abstract class OTP {
     var hmacSha1 = Hmac(sha1, hmacKey);
 
     /// get hmac answer
-    var hmac = hmacSha1.convert(Util.intToBytelist(input)).bytes;
+    var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
 
     /// calculate the init offset
     int offset = hmac[hmac.length - 1] & 0xf;
@@ -75,20 +80,24 @@ abstract class OTP {
   }
 
   ///
-  /// Generate a url with TOTP or HOTP instance.
+  /// Generate a url with TOTP instance.
   ///
   /// @param {issuer}
   /// @type {String}
-  /// @desc maybe it is the Service name
+  /// @desc Service name
   ///
-  /// @param {type}
+  /// @param {account}
   /// @type {String}
-  /// @desc type of OTP instance
+  /// @desc Service identifier or detail
   ///
   /// @return {String}
   ///
-  String urlGen(String _issuer, String _type) {
+  String generateUrl({String issuer, String account}) {
     final _secret = this.secret;
-    return 'otpauth://$_type/SK?secret=$_secret&issuer=$_issuer';
+    final _type = otpTypeValue(type: type);
+    final _account = Uri.encodeComponent(account ?? '');
+    final _issuer = Uri.encodeQueryComponent(issuer ?? '');
+
+    return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits';
   }
 }

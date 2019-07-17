@@ -74,7 +74,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="HOTP" class="callable">
-          <span class="name"><a href="dart_otp/HOTP/HOTP.html">HOTP</a></span><span class="signature">(<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, [</span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span> = <span class="default-value">6</span></span> ])</span>
+          <span class="name"><a href="dart_otp/HOTP/HOTP.html">HOTP</a></span><span class="signature">({<span class="parameter" id="-param-secret"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })</span>
         </dt>
         <dd>
           @param {secret}
@@ -84,10 +84,18 @@
       </dl>
     </section>
 
-    <section class="summary offset-anchor inherited" id="instance-properties">
+    <section class="summary offset-anchor" id="instance-properties">
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="type" class="property">
+          <span class="name"><a href="dart_otp/HOTP/type.html">type</a></span>
+          <span class="signature">&#8594; OTPType</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read-only</div>
+</dd>
         <dt id="digits" class="property inherited">
           <span class="name"><a href="dart_otp/HOTP/digits.html">digits</a></span>
           <span class="signature">&#8596; int</span>         
@@ -127,7 +135,7 @@
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="at" class="callable">
-          <span class="name"><a href="dart_otp/HOTP/at.html">at</a></span><span class="signature">(<wbr><span class="parameter" id="at-param-count"><span class="type-annotation">int</span> <span class="parameter-name">count</span></span>)
+          <span class="name"><a href="dart_otp/HOTP/at.html">at</a></span><span class="signature">(<wbr>{<span class="parameter" id="at-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
@@ -135,17 +143,8 @@
           Generate the OTP with the given count <a href="dart_otp/HOTP/at.html">[...]</a>
                   
 </dd>
-        <dt id="urlGen" class="callable">
-          <span class="name"><a href="dart_otp/HOTP/urlGen.html">urlGen</a></span><span class="signature">(<wbr><span class="parameter" id="urlGen-param-_issuer"><span class="type-annotation">String</span> <span class="parameter-name">_issuer</span>, </span> <span class="parameter" id="urlGen-param-_type"><span class="type-annotation">String</span> <span class="parameter-name">_type</span></span>)
-            <span class="returntype parameter">&#8594; String</span>
-          </span>
-                  </dt>
-        <dd>
-          Generate a url with TOTP instance. <a href="dart_otp/HOTP/urlGen.html">[...]</a>
-                  
-</dd>
         <dt id="verify" class="callable">
-          <span class="name"><a href="dart_otp/HOTP/verify.html">verify</a></span><span class="signature">(<wbr><span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span></span>)
+          <span class="name"><a href="dart_otp/HOTP/verify.html">verify</a></span><span class="signature">(<wbr>{<span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span></span> })
             <span class="returntype parameter">&#8594; bool</span>
           </span>
                   </dt>
@@ -154,7 +153,7 @@
                   
 </dd>
         <dt id="generateOTP" class="callable inherited">
-          <span class="name"><a href="dart_otp/HOTP/generateOTP.html">generateOTP</a></span><span class="signature">(<wbr><span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span>)
+          <span class="name"><a href="dart_otp/HOTP/generateOTP.html">generateOTP</a></span><span class="signature">(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
@@ -162,6 +161,15 @@
           When class HOTP or TOTP pass the input params to this
 function, it will generate the OTP object with params,
 the params may be counter or time. <a href="dart_otp/HOTP/generateOTP.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="generateUrl" class="callable inherited">
+          <span class="name"><a href="dart_otp/HOTP/generateUrl.html">generateUrl</a></span><span class="signature">(<wbr>{<span class="parameter" id="generateUrl-param-issuer"><span class="type-annotation">String</span> <span class="parameter-name">issuer</span>, </span> <span class="parameter" id="generateUrl-param-account"><span class="type-annotation">String</span> <span class="parameter-name">account</span></span> })
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Generate a url with TOTP instance. <a href="dart_otp/HOTP/generateUrl.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -210,9 +218,10 @@ the params may be counter or time. <a href="dart_otp/HOTP/generateOTP.html">[...
       <li class="section-title"><a href="dart_otp/HOTP-class.html#constructors">Constructors</a></li>
       <li><a href="dart_otp/HOTP/HOTP.html">HOTP</a></li>
     
-      <li class="section-title inherited">
+      <li class="section-title">
         <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/HOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
@@ -220,9 +229,9 @@ the params may be counter or time. <a href="dart_otp/HOTP/generateOTP.html">[...
     
       <li class="section-title"><a href="dart_otp/HOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/HOTP/at.html">at</a></li>
-      <li><a href="dart_otp/HOTP/urlGen.html">urlGen</a></li>
       <li><a href="dart_otp/HOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/toString.html">toString</a></li>
     
@@ -238,7 +247,7 @@ the params may be counter or time. <a href="dart_otp/HOTP/generateOTP.html">[...
 
 <footer>
   <span class="no-break">
-    dart_otp 1.0.3
+    dart_otp 1.1.0
   </span>
 
   

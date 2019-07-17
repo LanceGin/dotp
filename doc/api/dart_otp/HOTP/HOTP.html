@@ -56,9 +56,10 @@
       <li class="section-title"><a href="dart_otp/HOTP-class.html#constructors">Constructors</a></li>
       <li><a href="dart_otp/HOTP/HOTP.html">HOTP</a></li>
     
-      <li class="section-title inherited">
+      <li class="section-title">
         <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/HOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
@@ -66,9 +67,9 @@
     
       <li class="section-title"><a href="dart_otp/HOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/HOTP/at.html">at</a></li>
-      <li><a href="dart_otp/HOTP/urlGen.html">urlGen</a></li>
       <li><a href="dart_otp/HOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/toString.html">toString</a></li>
     
@@ -85,7 +86,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">HOTP</span>(<wbr><span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, [</span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span> = <span class="default-value">6</span></span> ])
+      <span class="name ">HOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })
     </section>
 
     <section class="desc markdown">
@@ -101,7 +102,8 @@ This defaults to 6.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">HOTP(String secret, [int digits = 6]) : super(secret, digits);</code></pre>
+      <pre class="language-dart"><code class="language-dart">HOTP({@required String secret, int digits = 6})
+    : super(secret: secret, digits: digits);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -113,7 +115,7 @@ This defaults to 6.</p>
 
 <footer>
   <span class="no-break">
-    dart_otp 1.0.3
+    dart_otp 1.1.0
   </span>
 
   

@@ -4,11 +4,14 @@
 ///
 
 import 'otp.dart';
+import 'otp_type.dart';
 import 'util.dart';
 
 class TOTP extends OTP {
-
   int interval;
+
+  @override
+  OTPType get type => OTPType.TOTP;
 
   ///
   /// @param {secret}
@@ -27,7 +30,8 @@ class TOTP extends OTP {
   ///
   /// @return {TOTP}
   ///
-  TOTP(String secret, [int interval = 30, int digits = 6]) : super(secret, digits) {
+  TOTP({String secret, int interval = 30, int digits = 6})
+      : super(secret: secret, digits: digits) {
     this.interval = interval;
   }
 
@@ -37,14 +41,34 @@ class TOTP extends OTP {
   /// @return {OTP}
   ///
   /// @example
-  /// TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
+  /// TOTP totp = TOTP('BASE32ENCODEDSECRET');
   /// totp.now(); // => 432143
   ///
   String now() {
-    DateTime _now = DateTime.now();
-    int _formatTime = Util.timeFormat(_now, this.interval);
+    int _formatTime = Util.timeFormat(time: DateTime.now(), interval: interval);
+    return super.generateOTP(input: _formatTime);
+  }
 
-    return super.generateOTP(_formatTime);
+  ///
+  /// Generate the OTP with a custom time.
+  ///
+  /// @param {date}
+  /// @type {DateTime}
+  /// @desc time to generate the token.
+  ///
+  /// @return {OTP}
+  ///
+  /// @example
+  /// TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
+  /// totp.value(date: DateTime.now()); // => 432143
+  ///
+  String value({DateTime date}) {
+    if (date == null) {
+      return null;
+    }
+
+    int _formatTime = Util.timeFormat(time: date, interval: interval);
+    return super.generateOTP(input: _formatTime);
   }
 
   ///
@@ -61,37 +85,22 @@ class TOTP extends OTP {
   /// @return {Boolean}
   ///
   /// @example
-  /// TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
+  /// TOTP totp = TOTP('BASE32ENCODEDSECRET');
   /// totp.now(); // => 432143
   /// // Verify for current time
-  /// totp.verify(432143); // => true
+  /// totp.verify(otp: 432143); // => true
   /// // Verify after 30s
-  /// totp.verify(432143); // => false
+  /// totp.verify(otp: 432143); // => false
   ///
-  bool verify(String otp, [DateTime time]) {
-    DateTime _time = time;
-    _time ??= DateTime.now();
-
-    String otpTime = super.generateOTP(Util.timeFormat(_time, this.interval));
-    if (otp == otpTime) {
-      return true;
+  bool verify({String otp, DateTime time}) {
+    if (otp == null) {
+      return false;
     }
-    return false;
-  }
 
-  ///
-  /// Generate a url with TOTP instance.
-  ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc maybe it is the Service name
-  ///
-  /// @return {String}
-  ///
-  @override
-  String urlGen(String _issuer, String _type) {
-    _issuer ??= '';
-    _type = 'totp';
-    return super.urlGen(_issuer, _type);
+    DateTime _time = time ?? DateTime.now();
+
+    String otpTime = super
+        .generateOTP(input: Util.timeFormat(time: _time, interval: interval));
+    return otp == otpTime;
   }
 }
