@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the HOTP constructor from the Class HOTP class from the dart_otp library, for the Dart programming language.">
-  <title>HOTP constructor - HOTP class - dart_otp library - Dart API</title>
+  <meta name="description" content="API docs for the generateUrl method from the HOTP class, for the Dart programming language.">
+  <title>generateUrl method - HOTP class - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -27,9 +27,9 @@
     <li><a href="index.html">dart_otp</a></li>
     <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
     <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-    <li class="self-crumb">HOTP constructor</li>
+    <li class="self-crumb">generateUrl method</li>
   </ol>
-  <div class="self-name">HOTP</div>
+  <div class="self-name">generateUrl</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="index.html">dart_otp</a></li>
       <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
       <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-      <li class="self-crumb">HOTP constructor</li>
+      <li class="self-crumb">generateUrl method</li>
     </ol>
     
     <h5>HOTP class</h5>
@@ -79,31 +79,38 @@
     
     
     </ol>
-  </div><!--/.sidebar-offcanvas-left-->
+  </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-constructor">HOTP</span> constructor</h1></div>
+      <div><h1><span class="kind-method">generateUrl</span> method</h1></div>
 
     <section class="multi-line-signature">
-      
-      <span class="name ">HOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })
+      <span class="returntype">String</span>
+            <span class="name ">generateUrl</span>
+(<wbr>{<span class="parameter" id="generateUrl-param-issuer"><span class="type-annotation">String</span> <span class="parameter-name">issuer</span>, </span> <span class="parameter" id="generateUrl-param-account"><span class="type-annotation">String</span> <span class="parameter-name">account</span></span> })
+      <div class="features">inherited</div>
     </section>
-
     <section class="desc markdown">
-      <p>@param {secret}
+      <p>Generate a url with TOTP instance.</p>
+<p>@param {issuer}
 @type {String}
-@desc random base32-encoded key to generate OTP.</p>
-<p>@param {digits}
-@type {int}
-@desc the length of the one-time password.
-This defaults to 6.</p>
-<p>@return {HOTP}</p>
+@desc Service name</p>
+<p>@param {account}
+@type {String}
+@desc Service identifier or detail</p>
+<p>@return {String}</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">HOTP({@required String secret, int digits = 6})
-    : super(secret: secret, digits: digits);</code></pre>
+      <pre class="language-dart"><code class="language-dart">String generateUrl({String issuer, String account}) {
+  final _secret = this.secret;
+  final _type = otpTypeValue(type: type);
+  final _account = Uri.encodeComponent(account ?? &#39;&#39;);
+  final _issuer = Uri.encodeQueryComponent(issuer ?? &#39;&#39;);
+
+  return &#39;otpauth:&#47;&#47;$_type&#47;$_account?secret=$_secret&amp;issuer=$_issuer&amp;digits=$digits&#39;;
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

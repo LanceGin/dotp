@@ -60,6 +60,7 @@
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
+      <li><a href="dart_otp/TOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -67,9 +68,10 @@
     
       <li class="section-title"><a href="dart_otp/TOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/TOTP/now.html">now</a></li>
-      <li><a href="dart_otp/TOTP/urlGen.html">urlGen</a></li>
+      <li><a href="dart_otp/TOTP/value.html">value</a></li>
       <li><a href="dart_otp/TOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/toString.html">toString</a></li>
     
@@ -106,7 +108,8 @@ This defaults to 6.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">TOTP({ @required String secret, int interval = 30, int digits = 6 }) : super(secret, digits) {
+      <pre class="language-dart"><code class="language-dart">TOTP({@required String secret, int interval = 30, int digits = 6})
+    : super(secret: secret, digits: digits) {
   this.interval = interval;
 }</code></pre>
     </section>

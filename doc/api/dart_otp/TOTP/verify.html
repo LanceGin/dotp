@@ -60,6 +60,7 @@
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
+      <li><a href="dart_otp/TOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -67,9 +68,10 @@
     
       <li class="section-title"><a href="dart_otp/TOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/TOTP/now.html">now</a></li>
-      <li><a href="dart_otp/TOTP/urlGen.html">urlGen</a></li>
+      <li><a href="dart_otp/TOTP/value.html">value</a></li>
       <li><a href="dart_otp/TOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/toString.html">toString</a></li>
     
@@ -87,7 +89,7 @@
     <section class="multi-line-signature">
       <span class="returntype">bool</span>
             <span class="name ">verify</span>
-(<wbr><span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, [</span> <span class="parameter" id="verify-param-time"><span class="type-annotation">DateTime</span> <span class="parameter-name">time</span></span> ])
+(<wbr>{<span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-time"><span class="type-annotation">DateTime</span> <span class="parameter-name">time</span></span> })
       
     </section>
     <section class="desc markdown">
@@ -100,25 +102,26 @@
 @desc Time to check OTP at (defaults to now)</p>
 <p>@return {Boolean}</p>
 <p>@example
-TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
+TOTP totp = TOTP('BASE32ENCODEDSECRET');
 totp.now(); // =&gt; 432143
 // Verify for current time
-totp.verify(432143); // =&gt; true
+totp.verify(otp: 432143); // =&gt; true
 // Verify after 30s
-totp.verify(432143); // =&gt; false</p>
+totp.verify(otp: 432143); // =&gt; false</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">bool verify(String otp, [DateTime time]) {
-  DateTime _time = time;
-  _time ??= DateTime.now();
-
-  String otpTime = super.generateOTP(Util.timeFormat(_time, this.interval));
-  if (otp == otpTime) {
-    return true;
+      <pre class="language-dart"><code class="language-dart">bool verify({String otp, DateTime time}) {
+  if (otp == null) {
+    return false;
   }
-  return false;
+
+  DateTime _time = time ?? DateTime.now();
+
+  String otpTime = super
+      .generateOTP(input: Util.timeFormat(time: _time, interval: interval));
+  return otp == otpTime;
 }</code></pre>
     </section>
 

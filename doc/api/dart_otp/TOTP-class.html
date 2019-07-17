@@ -96,6 +96,14 @@
           
                   <div class="features">read / write</div>
 </dd>
+        <dt id="type" class="property">
+          <span class="name"><a href="dart_otp/TOTP/type.html">type</a></span>
+          <span class="signature">&#8594; OTPType</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read-only</div>
+</dd>
         <dt id="digits" class="property inherited">
           <span class="name"><a href="dart_otp/TOTP/digits.html">digits</a></span>
           <span class="signature">&#8596; int</span>         
@@ -143,17 +151,17 @@
           Generate the OTP with current time. <a href="dart_otp/TOTP/now.html">[...]</a>
                   
 </dd>
-        <dt id="urlGen" class="callable">
-          <span class="name"><a href="dart_otp/TOTP/urlGen.html">urlGen</a></span><span class="signature">(<wbr><span class="parameter" id="urlGen-param-_issuer"><span class="type-annotation">String</span> <span class="parameter-name">_issuer</span>, </span> <span class="parameter" id="urlGen-param-_type"><span class="type-annotation">String</span> <span class="parameter-name">_type</span></span>)
+        <dt id="value" class="callable">
+          <span class="name"><a href="dart_otp/TOTP/value.html">value</a></span><span class="signature">(<wbr>{<span class="parameter" id="value-param-date"><span class="type-annotation">DateTime</span> <span class="parameter-name">date</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
         <dd>
-          Generate a url with TOTP instance. <a href="dart_otp/TOTP/urlGen.html">[...]</a>
+          Generate the OTP with a custom time. <a href="dart_otp/TOTP/value.html">[...]</a>
                   
 </dd>
         <dt id="verify" class="callable">
-          <span class="name"><a href="dart_otp/TOTP/verify.html">verify</a></span><span class="signature">(<wbr><span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, [</span> <span class="parameter" id="verify-param-time"><span class="type-annotation">DateTime</span> <span class="parameter-name">time</span></span> ])
+          <span class="name"><a href="dart_otp/TOTP/verify.html">verify</a></span><span class="signature">(<wbr>{<span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-time"><span class="type-annotation">DateTime</span> <span class="parameter-name">time</span></span> })
             <span class="returntype parameter">&#8594; bool</span>
           </span>
                   </dt>
@@ -162,7 +170,7 @@
                   
 </dd>
         <dt id="generateOTP" class="callable inherited">
-          <span class="name"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></span><span class="signature">(<wbr><span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span>)
+          <span class="name"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></span><span class="signature">(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
@@ -170,6 +178,15 @@
           When class HOTP or TOTP pass the input params to this
 function, it will generate the OTP object with params,
 the params may be counter or time. <a href="dart_otp/TOTP/generateOTP.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="generateUrl" class="callable inherited">
+          <span class="name"><a href="dart_otp/TOTP/generateUrl.html">generateUrl</a></span><span class="signature">(<wbr>{<span class="parameter" id="generateUrl-param-issuer"><span class="type-annotation">String</span> <span class="parameter-name">issuer</span>, </span> <span class="parameter" id="generateUrl-param-account"><span class="type-annotation">String</span> <span class="parameter-name">account</span></span> })
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Generate a url with TOTP instance. <a href="dart_otp/TOTP/generateUrl.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -222,6 +239,7 @@ the params may be counter or time. <a href="dart_otp/TOTP/generateOTP.html">[...
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
+      <li><a href="dart_otp/TOTP/type.html">type</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -229,9 +247,10 @@ the params may be counter or time. <a href="dart_otp/TOTP/generateOTP.html">[...
     
       <li class="section-title"><a href="dart_otp/TOTP-class.html#instance-methods">Methods</a></li>
       <li><a href="dart_otp/TOTP/now.html">now</a></li>
-      <li><a href="dart_otp/TOTP/urlGen.html">urlGen</a></li>
+      <li><a href="dart_otp/TOTP/value.html">value</a></li>
       <li><a href="dart_otp/TOTP/verify.html">verify</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/generateUrl.html">generateUrl</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/toString.html">toString</a></li>
     

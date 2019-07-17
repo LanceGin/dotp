@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the HOTP constructor from the Class HOTP class from the dart_otp library, for the Dart programming language.">
-  <title>HOTP constructor - HOTP class - dart_otp library - Dart API</title>
+  <meta name="description" content="API docs for the type property from the HOTP class, for the Dart programming language.">
+  <title>type property - HOTP class - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -27,9 +27,9 @@
     <li><a href="index.html">dart_otp</a></li>
     <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
     <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-    <li class="self-crumb">HOTP constructor</li>
+    <li class="self-crumb">type property</li>
   </ol>
-  <div class="self-name">HOTP</div>
+  <div class="self-name">type</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="index.html">dart_otp</a></li>
       <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
       <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-      <li class="self-crumb">HOTP constructor</li>
+      <li class="self-crumb">type property</li>
     </ol>
     
     <h5>HOTP class</h5>
@@ -79,33 +79,27 @@
     
     
     </ol>
-  </div><!--/.sidebar-offcanvas-left-->
+  </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-constructor">HOTP</span> constructor</h1></div>
+      <div><h1><span class="kind-property">type</span> property</h1></div>
 
-    <section class="multi-line-signature">
-      
-      <span class="name ">HOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })
-    </section>
 
-    <section class="desc markdown">
-      <p>@param {secret}
-@type {String}
-@desc random base32-encoded key to generate OTP.</p>
-<p>@param {digits}
-@type {int}
-@desc the length of the one-time password.
-This defaults to 6.</p>
-<p>@return {HOTP}</p>
-    </section>
-    
-    <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">HOTP({@required String secret, int digits = 6})
-    : super(secret: secret, digits: digits);</code></pre>
-    </section>
-
+        <section id="getter">
+        
+        <section class="multi-line-signature">
+          <span class="returntype">OTPType</span>
+                  <span class="name ">type</span>
+          
+</section>
+        
+                        <section class="summary source-code" id="source">
+          <h2><span>Implementation</span></h2>
+          <pre class="language-dart"><code class="language-dart">@override
+OTPType get type =&gt; OTPType.HOTP;</code></pre>
+        </section>
+</section>
+        
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
