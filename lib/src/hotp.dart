@@ -7,7 +7,6 @@ import 'otp.dart';
 import 'package:meta/meta.dart';
 
 class HOTP extends OTP {
-
   ///
   /// @param {secret}
   /// @type {String}
@@ -20,7 +19,7 @@ class HOTP extends OTP {
   ///
   /// @return {HOTP}
   ///
-  HOTP({ @required String secret, int digits = 6 }) : super(secret, digits);
+  HOTP({@required String secret, int digits = 6}) : super(secret, digits);
 
   ///
   /// Generate the OTP with the given count
@@ -35,12 +34,10 @@ class HOTP extends OTP {
   /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
   /// hotp.at(counter: 0); // => 432143
   ///
-  String at({ int counter }) {
-
+  String at({int counter}) {
     if (counter == null) return null;
-    
-    return super.generateOTP(counter);
 
+    return super.generateOTP(counter);
   }
 
   ///
@@ -64,8 +61,7 @@ class HOTP extends OTP {
   /// // Verify after 30s
   /// hotp.verify(otp: 432143, counter: 10); // => false
   ///
-  bool verify({ String otp, int counter }) {
-
+  bool verify({String otp, int counter}) {
     if (otp == null || counter == null) return null;
 
     String otpCount = this.at(counter: counter);

@@ -9,7 +9,6 @@ import 'package:base32/base32.dart';
 import 'util.dart';
 
 abstract class OTP {
-
   String secret;
   int digits;
 
