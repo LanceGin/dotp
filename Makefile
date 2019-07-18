@@ -10,9 +10,12 @@ deps: pubspec.yaml
 format:
 	dartfmt -w lib/ test/
 
-build-local: format build
+build-local: format build check-publish
 	genhtml -o coverage coverage/lcov.info
 	open coverage/index.html
+
+check-publish:
+	pub publish -n
 
 publish:
 	pub publish
