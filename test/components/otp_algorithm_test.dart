@@ -15,7 +15,16 @@ void main() {
         Hmac(sha256, key).toString());
   });
 
+  test(
+      '[OTPAlgorithm] Should return a raw value for each available algorithm type',
+      () {
+    expect(rawValue(algorithm: OTPAlgorithm.SHA1), 'SHA1');
+    expect(rawValue(algorithm: OTPAlgorithm.SHA256), 'SHA256');
+  });
+
   test('[OTPAlgorithm] Fail conditions', () {
+    expect(rawValue(algorithm: null), null);
+
     expect(createHmacFor(algorithm: null, key: null), null);
     expect(createHmacFor(algorithm: OTPAlgorithm.SHA1, key: null), null);
     expect(createHmacFor(algorithm: null, key: key), null);
