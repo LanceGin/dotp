@@ -22,7 +22,7 @@ Add `dart_otp` as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  dart_otp: ^1.1.0
+  dart_otp: ^1.2.0
 ```
 
 ### Example
