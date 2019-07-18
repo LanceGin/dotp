@@ -59,8 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/TOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
       <li><a href="dart_otp/TOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -93,21 +95,15 @@
       
     </section>
     <section class="desc markdown">
-      <p>Verifies the OTP passed in against the current time OTP.</p>
-<p>@param {otp}
-@type {String}
-@desc the OTP waiting for checking</p>
-<p>@param {time}
-@type {int or datetime}
-@desc Time to check OTP at (defaults to now)</p>
-<p>@return {Boolean}</p>
-<p>@example
-TOTP totp = TOTP('BASE32ENCODEDSECRET');
+      <p>Verifies the TOTP value passed in against the current time.</p>
+<p>All parameters are mandatory.</p>
+<pre class="language-dart"><code class="language-dart">TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
 totp.now(); // =&gt; 432143
 // Verify for current time
 totp.verify(otp: 432143); // =&gt; true
 // Verify after 30s
-totp.verify(otp: 432143); // =&gt; false</p>
+totp.verify(otp: 432143); // =&gt; false
+</code></pre>
     </section>
     
     <section class="summary source-code" id="source">
@@ -117,10 +113,10 @@ totp.verify(otp: 432143); // =&gt; false</p>
     return false;
   }
 
-  DateTime _time = time ?? DateTime.now();
+  var _time = time ?? DateTime.now();
+  var _input = Util.timeFormat(time: _time, interval: interval);
 
-  String otpTime = super
-      .generateOTP(input: Util.timeFormat(time: _time, interval: interval));
+  String otpTime = super.generateOTP(input: _input);
   return otp == otpTime;
 }</code></pre>
     </section>

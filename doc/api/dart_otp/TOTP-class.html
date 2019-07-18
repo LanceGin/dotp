@@ -67,6 +67,9 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <div><h1><span class="kind-class">TOTP</span> class </h1></div>
 
+    <section class="desc markdown">
+      <p>TOTP class will generate the OTP (One Time Password) object with the current or given time.</p>
+    </section>
     
 
     <section class="summary offset-anchor" id="constructors">
@@ -74,12 +77,10 @@
 
       <dl class="constructor-summary-list">
         <dt id="TOTP" class="callable">
-          <span class="name"><a href="dart_otp/TOTP/TOTP.html">TOTP</a></span><span class="signature">({<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-interval"><span class="type-annotation">int</span> <span class="parameter-name">interval</span>: <span class="default-value">30</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })</span>
+          <span class="name"><a href="dart_otp/TOTP/TOTP.html">TOTP</a></span><span class="signature">({<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span>, </span> <span class="parameter" id="-param-interval"><span class="type-annotation">int</span> <span class="parameter-name">interval</span>: <span class="default-value">30</span>, </span> <span class="parameter" id="-param-algorithm"><span class="type-annotation">OTPAlgorithm</span> <span class="parameter-name">algorithm</span>: <span class="default-value">OTPAlgorithm.SHA1</span></span> })</span>
         </dt>
         <dd>
-          @param {secret}
-@type {String}
-@desc random base32-encoded key to generate OTP. <a href="dart_otp/TOTP/TOTP.html">[...]</a>
+          This constructor will create an TOTP instance. <a href="dart_otp/TOTP/TOTP.html">[...]</a>
         </dd>
       </dl>
     </section>
@@ -88,12 +89,20 @@
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="extraUrlProperties" class="property">
+          <span class="name"><a href="dart_otp/TOTP/extraUrlProperties.html">extraUrlProperties</a></span>
+          <span class="signature">&#8594; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          To access custom properties when generating the url.
+                  <div class="features">read-only</div>
+</dd>
         <dt id="interval" class="property">
           <span class="name"><a href="dart_otp/TOTP/interval.html">interval</a></span>
           <span class="signature">&#8596; int</span>         
         </dt>
         <dd>
-          
+          Period in which should be generated new tokens.
                   <div class="features">read / write</div>
 </dd>
         <dt id="type" class="property">
@@ -101,15 +110,23 @@
           <span class="signature">&#8594; OTPType</span>         
         </dt>
         <dd>
-          
+          The type of the token.
                   <div class="features">read-only</div>
+</dd>
+        <dt id="algorithm" class="property inherited">
+          <span class="name"><a href="dart_otp/TOTP/algorithm.html">algorithm</a></span>
+          <span class="signature">&#8596; OTPAlgorithm</span>         
+        </dt>
+        <dd class="inherited">
+          The crypto algorithm used on HMAC encoding.
+                  <div class="features">read / write, inherited</div>
 </dd>
         <dt id="digits" class="property inherited">
           <span class="name"><a href="dart_otp/TOTP/digits.html">digits</a></span>
           <span class="signature">&#8596; int</span>         
         </dt>
         <dd class="inherited">
-          
+          The length of the one-time password, between 6 and 8.
                   <div class="features">read / write, inherited</div>
 </dd>
         <dt id="hashCode" class="property inherited">
@@ -133,7 +150,7 @@
           <span class="signature">&#8596; String</span>         
         </dt>
         <dd class="inherited">
-          
+          The Base32 secret key used to generate the one-time password.
                   <div class="features">read / write, inherited</div>
 </dd>
       </dl>
@@ -148,7 +165,7 @@
           </span>
                   </dt>
         <dd>
-          Generate the OTP with current time. <a href="dart_otp/TOTP/now.html">[...]</a>
+          Generate the TOTP value with current time. <a href="dart_otp/TOTP/now.html">[...]</a>
                   
 </dd>
         <dt id="value" class="callable">
@@ -166,11 +183,11 @@
           </span>
                   </dt>
         <dd>
-          Verifies the OTP passed in against the current time OTP. <a href="dart_otp/TOTP/verify.html">[...]</a>
+          Verifies the TOTP value passed in against the current time. <a href="dart_otp/TOTP/verify.html">[...]</a>
                   
 </dd>
         <dt id="generateOTP" class="callable inherited">
-          <span class="name"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></span><span class="signature">(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span> })
+          <span class="name"><a href="dart_otp/TOTP/generateOTP.html">generateOTP</a></span><span class="signature">(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span>, </span> <span class="parameter" id="generateOTP-param-algorithm"><span class="type-annotation">OTPAlgorithm</span> <span class="parameter-name">algorithm</span>: <span class="default-value">OTPAlgorithm.SHA1</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
@@ -186,7 +203,7 @@ the params may be counter or time. <a href="dart_otp/TOTP/generateOTP.html">[...
           </span>
                   </dt>
         <dd class="inherited">
-          Generate a url with TOTP instance. <a href="dart_otp/TOTP/generateUrl.html">[...]</a>
+          Generate a url with OTP instance. <a href="dart_otp/TOTP/generateUrl.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -238,8 +255,10 @@ the params may be counter or time. <a href="dart_otp/TOTP/generateOTP.html">[...
       <li class="section-title">
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/TOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
       <li><a href="dart_otp/TOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>

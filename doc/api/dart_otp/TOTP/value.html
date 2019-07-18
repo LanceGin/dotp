@@ -59,8 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/TOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
       <li><a href="dart_otp/TOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -94,13 +96,10 @@
     </section>
     <section class="desc markdown">
       <p>Generate the OTP with a custom time.</p>
-<p>@param {date}
-@type {DateTime}
-@desc time to generate the token.</p>
-<p>@return {OTP}</p>
-<p>@example
-TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
-totp.value(date: DateTime.now()); // =&gt; 432143</p>
+<p>All parameters are mandatory.</p>
+<pre class="language-dart"><code class="language-dart">TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
+totp.value(date: DateTime.now()); // =&gt; 432143
+</code></pre>
     </section>
     
     <section class="summary source-code" id="source">

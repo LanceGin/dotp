@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the secret property from the HOTP class, for the Dart programming language.">
-  <title>secret property - HOTP class - dart_otp library - Dart API</title>
+  <meta name="description" content="API docs for the extraUrlProperties property from the HOTP class, for the Dart programming language.">
+  <title>extraUrlProperties property - HOTP class - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -27,9 +27,9 @@
     <li><a href="index.html">dart_otp</a></li>
     <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
     <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-    <li class="self-crumb">secret property</li>
+    <li class="self-crumb">extraUrlProperties property</li>
   </ol>
-  <div class="self-name">secret</div>
+  <div class="self-name">extraUrlProperties</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="index.html">dart_otp</a></li>
       <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
       <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-      <li class="self-crumb">secret property</li>
+      <li class="self-crumb">extraUrlProperties property</li>
     </ol>
     
     <h5>HOTP class</h5>
@@ -85,23 +85,27 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-property">secret</span> property</h1></div>
+      <div><h1><span class="kind-property">extraUrlProperties</span> property</h1></div>
 
+
+        <section id="getter">
+        
         <section class="multi-line-signature">
-          <span class="returntype">String</span>
-          <span class="name ">secret</span>
-          <div class="features">read / write, inherited</div>
-        </section>
-        <section class="desc markdown">
-          <p>The Base32 secret key used to generate the one-time password.</p>
+          <span class="returntype">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+                  <span class="name ">extraUrlProperties</span>
+          
+</section>
+        
+                <section class="desc markdown">
+          <p>To access custom properties when generating the url.</p>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
-          <pre class="language-dart"><code class="language-dart">String secret
-
-</code></pre>
+          <pre class="language-dart"><code class="language-dart">@override
+Map&lt;String, dynamic&gt; get extraUrlProperties =&gt; {&quot;counter&quot;: counter};</code></pre>
         </section>
-
+</section>
+        
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">

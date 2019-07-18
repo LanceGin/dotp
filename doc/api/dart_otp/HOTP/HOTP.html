@@ -59,7 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/HOTP/counter.html">counter</a></li>
+      <li><a href="dart_otp/HOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/HOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
@@ -86,23 +89,26 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">HOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span></span> })
+      <span class="name ">HOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span>: <span class="default-value">0</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span>, </span> <span class="parameter" id="-param-algorithm"><span class="type-annotation">OTPAlgorithm</span> <span class="parameter-name">algorithm</span>: <span class="default-value">OTPAlgorithm.SHA1</span></span> })
     </section>
 
     <section class="desc markdown">
-      <p>@param {secret}
-@type {String}
-@desc random base32-encoded key to generate OTP.</p>
-<p>@param {digits}
-@type {int}
-@desc the length of the one-time password.
-This defaults to 6.</p>
-<p>@return {HOTP}</p>
+      <p>This constructor will create an HOTP instance.</p>
+<p>All parameters are mandatory however <code>counter</code>,
+<code>digits</code> and <code>algorithm</code> have a default values, so can be ignored.</p>
+<p>Will throw an exception if the line above isn't satisfied.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">HOTP({String secret, int digits = 6}) : super(secret: secret, digits: digits);</code></pre>
+      <pre class="language-dart"><code class="language-dart">HOTP(
+    {String secret,
+    int counter = 0,
+    int digits = 6,
+    OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
+    : super(secret: secret, digits: digits, algorithm: algorithm) {
+  this.counter = counter;
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

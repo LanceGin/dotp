@@ -59,7 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/HOTP/counter.html">counter</a></li>
+      <li><a href="dart_otp/HOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/HOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
@@ -87,28 +90,25 @@
     <section class="multi-line-signature">
       <span class="returntype">String</span>
             <span class="name ">generateOTP</span>
-(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span></span> })
+(<wbr>{<span class="parameter" id="generateOTP-param-input"><span class="type-annotation">int</span> <span class="parameter-name">input</span>, </span> <span class="parameter" id="generateOTP-param-algorithm"><span class="type-annotation">OTPAlgorithm</span> <span class="parameter-name">algorithm</span>: <span class="default-value">OTPAlgorithm.SHA1</span></span> })
       <div class="features">inherited</div>
     </section>
     <section class="desc markdown">
       <p>When class HOTP or TOTP pass the input params to this
 function, it will generate the OTP object with params,
 the params may be counter or time.</p>
-<p>@param {input}
-@type {int}
-@desc input params to generate OTP object, maybe
-counter or time.</p>
-<p>@return {String}</p>
+<p>All parameters are mandatory however <code>algorithm</code> have
+a default value, so can be ignored.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">String generateOTP({int input}) {
+      <pre class="language-dart"><code class="language-dart">String generateOTP({int input, OTPAlgorithm algorithm = OTPAlgorithm.SHA1}) {
   &#47;&#47;&#47; base32 decode the secret
   var hmacKey = base32.decode(this.secret);
 
   &#47;&#47;&#47; initial the HMAC-SHA1 object
-  var hmacSha1 = Hmac(sha1, hmacKey);
+  var hmacSha1 = createHmacFor(algorithm: algorithm, key: hmacKey);
 
   &#47;&#47;&#47; get hmac answer
   var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
