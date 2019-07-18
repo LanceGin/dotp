@@ -15,6 +15,7 @@ abstract class OTP {
   OTPAlgorithm algorithm;
 
   OTPType get type;
+  Map<String, dynamic> get extraUrlProperties;
 
   ///
   /// This constructor will create OTP instance.
@@ -103,6 +104,12 @@ abstract class OTP {
     final _account = Uri.encodeComponent(account ?? '');
     final _issuer = Uri.encodeQueryComponent(issuer ?? '');
 
-    return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits';
+    final _algorithm = rawValue(algorithm: algorithm);
+    final _extra = extraUrlProperties
+        .map((key, value) => MapEntry(key, "$key=$value"))
+        .values
+        .join('&');
+
+    return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits&algorithm=$_algorithm&$_extra';
   }
 }
