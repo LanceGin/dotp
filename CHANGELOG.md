@@ -22,3 +22,17 @@
 * Refactor some components
 * Minor code style enhancements
 * Increase options export option for generate url function
+
+## [1.2.0]
+
+* Minor enhancements
+* Add new counter property inside hotp object
+* Update documentation according to dart guidelines
+* Add support for SHA256 algorithm (available: SHA1 and SHA256)
+* Add extra url proprties to otp object in order to export:
+  * Digits
+  * Issuer
+  * Period
+  * Account
+  * Counter
+  * Algorithm
