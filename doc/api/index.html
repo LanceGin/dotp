@@ -54,7 +54,8 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="dart_otp">dart_otp</h1>
-<p><a href="https://travis-ci.org/BrunoMiguens/dart_otp"><img src="https://travis-ci.org/BrunoMiguens/dart_otp.svg?branch=master" alt="Build Status"></a>
+<p><a href="https://pub.dev/packages/dart_otp"><img src="https://img.shields.io/pub/v/dart_otp.svg" alt="pub package"></a>
+<a href="https://travis-ci.org/BrunoMiguens/dart_otp"><img src="https://travis-ci.org/BrunoMiguens/dart_otp.svg?branch=master" alt="Build Status"></a>
 <a href="https://coveralls.io/github/BrunoMiguens/dart_otp?branch=master"><img src="https://coveralls.io/repos/github/BrunoMiguens/dart_otp/badge.svg?branch=master" alt="Coverage Status"></a></p>
 <p><code>dart_otp</code> is a dart package to generate and verify one-time passwords that were used to implement 2FA and MFA authentication method in web applications and other login-required systems.</p>
 <p>The package was implement based on <a href="https://tools.ietf.org/html/rfc4226">RFC4226</a> (HOTP: An HMAC-Based One-Time Password Algorithm) and <a href="https://tools.ietf.org/html/rfc6238">RFC6238</a> (TOTP: Time-Based One-Time Password Algorithm).</p>
@@ -63,7 +64,7 @@
 <h4 id="pubspec">Pubspec</h4>
 <p>Add <code>dart_otp</code> as a dependency in your <code>pubspec.yaml</code> file.</p>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-  dart_otp: ^1.1.0
+  dart_otp: ^1.2.0
 </code></pre>
 <h3 id="example">Example</h3>
 <h4 id="time-based-otps">Time-based OTPs</h4>
@@ -95,7 +96,7 @@ void main() {
   HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV");
 
   /// initialization for custom digit value
-  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
+  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV", counter: 50, digits: 8);
 
   hotp.at(counter: 0); /// =&gt; 432143
   hotp.at(counter: 1); /// =&gt; 231434
@@ -133,7 +134,7 @@ void main() {
 
 <footer>
   <span class="no-break">
-    dart_otp 1.1.0
+    dart_otp 1.2.0
   </span>
 
   

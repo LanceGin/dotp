@@ -1,5 +1,6 @@
 # dart_otp
 
+[![pub package](https://img.shields.io/pub/v/dart_otp.svg)](https://pub.dev/packages/dart_otp)
 [![Build Status](https://travis-ci.org/BrunoMiguens/dart_otp.svg?branch=master)](https://travis-ci.org/BrunoMiguens/dart_otp)
 [![Coverage Status](https://coveralls.io/repos/github/BrunoMiguens/dart_otp/badge.svg?branch=master)](https://coveralls.io/github/BrunoMiguens/dart_otp?branch=master)
 
@@ -21,7 +22,7 @@ Add `dart_otp` as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  dart_otp: ^1.1.0
+  dart_otp: ^1.2.0
 ```
 
 ### Example
@@ -60,7 +61,7 @@ void main() {
   HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV");
 
   /// initialization for custom digit value
-  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
+  HOTP hotp = HOTP(secret: "J22U6B3WIWRRBTAV", counter: 50, digits: 8);
 
   hotp.at(counter: 0); /// => 432143
   hotp.at(counter: 1); /// => 231434

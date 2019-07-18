@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the verify method from the TOTP class, for the Dart programming language.">
-  <title>verify method - TOTP class - dart_otp library - Dart API</title>
+  <meta name="description" content="API docs for the extraUrlProperties property from the TOTP class, for the Dart programming language.">
+  <title>extraUrlProperties property - TOTP class - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -27,9 +27,9 @@
     <li><a href="index.html">dart_otp</a></li>
     <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
     <li><a href="dart_otp/TOTP-class.html">TOTP</a></li>
-    <li class="self-crumb">verify method</li>
+    <li class="self-crumb">extraUrlProperties property</li>
   </ol>
-  <div class="self-name">verify</div>
+  <div class="self-name">extraUrlProperties</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="index.html">dart_otp</a></li>
       <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
       <li><a href="dart_otp/TOTP-class.html">TOTP</a></li>
-      <li class="self-crumb">verify method</li>
+      <li class="self-crumb">extraUrlProperties property</li>
     </ol>
     
     <h5>TOTP class</h5>
@@ -59,8 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/TOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
       <li><a href="dart_otp/TOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -84,47 +86,27 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-method">verify</span> method</h1></div>
+      <div><h1><span class="kind-property">extraUrlProperties</span> property</h1></div>
 
-    <section class="multi-line-signature">
-      <span class="returntype">bool</span>
-            <span class="name ">verify</span>
-(<wbr>{<span class="parameter" id="verify-param-otp"><span class="type-annotation">String</span> <span class="parameter-name">otp</span>, </span> <span class="parameter" id="verify-param-time"><span class="type-annotation">DateTime</span> <span class="parameter-name">time</span></span> })
-      
-    </section>
-    <section class="desc markdown">
-      <p>Verifies the OTP passed in against the current time OTP.</p>
-<p>@param {otp}
-@type {String}
-@desc the OTP waiting for checking</p>
-<p>@param {time}
-@type {int or datetime}
-@desc Time to check OTP at (defaults to now)</p>
-<p>@return {Boolean}</p>
-<p>@example
-TOTP totp = TOTP('BASE32ENCODEDSECRET');
-totp.now(); // =&gt; 432143
-// Verify for current time
-totp.verify(otp: 432143); // =&gt; true
-// Verify after 30s
-totp.verify(otp: 432143); // =&gt; false</p>
-    </section>
-    
-    <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">bool verify({String otp, DateTime time}) {
-  if (otp == null) {
-    return false;
-  }
 
-  DateTime _time = time ?? DateTime.now();
-
-  String otpTime = super
-      .generateOTP(input: Util.timeFormat(time: _time, interval: interval));
-  return otp == otpTime;
-}</code></pre>
-    </section>
-
+        <section id="getter">
+        
+        <section class="multi-line-signature">
+          <span class="returntype">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+                  <span class="name ">extraUrlProperties</span>
+          
+</section>
+        
+                <section class="desc markdown">
+          <p>To access custom properties when generating the url.</p>
+        </section>
+                <section class="summary source-code" id="source">
+          <h2><span>Implementation</span></h2>
+          <pre class="language-dart"><code class="language-dart">@override
+Map&lt;String, dynamic&gt; get extraUrlProperties =&gt; {&quot;period&quot;: interval};</code></pre>
+        </section>
+</section>
+        
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">

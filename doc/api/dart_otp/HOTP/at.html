@@ -59,7 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/HOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/HOTP/counter.html">counter</a></li>
+      <li><a href="dart_otp/HOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/HOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/HOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/HOTP/runtimeType.html">runtimeType</a></li>
@@ -91,14 +94,10 @@
       
     </section>
     <section class="desc markdown">
-      <p>Generate the OTP with the given count</p>
-<p>@param {counter}
-@type {int}
-@desc the OTP HMAC counter</p>
-<p>@return {String}</p>
-<p>@example
-HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
-hotp.at(counter: 0); // =&gt; 432143</p>
+      <p>Generate the HOTP value with the given count</p>
+<pre class="language-dart"><code class="language-dart">HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
+hotp.at(counter: 0); // =&gt; 432143
+</code></pre>
     </section>
     
     <section class="summary source-code" id="source">
@@ -121,7 +120,7 @@ hotp.at(counter: 0); // =&gt; 432143</p>
 
 <footer>
   <span class="no-break">
-    dart_otp 1.1.0
+    dart_otp 1.2.0
   </span>
 
   

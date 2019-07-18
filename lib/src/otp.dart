@@ -4,41 +4,45 @@
 ///
 
 import 'dart:math';
-import 'package:crypto/crypto.dart';
 import 'package:base32/base32.dart';
-import 'package:dart_otp/src/otp_type.dart';
+import 'package:dart_otp/src/components/otp_algorithm.dart';
+import 'package:dart_otp/src/components/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
-  String secret;
+  /// The length of the one-time password, between 6 and 8.
   int digits;
 
+  /// The Base32 secret key used to generate the one-time password.
+  String secret;
+
+  /// The crypto algorithm used on HMAC encoding.
+  OTPAlgorithm algorithm;
+
+  /// The type of the token.
   OTPType get type;
 
+  /// To access custom properties when generating the url.
+  Map<String, dynamic> get extraUrlProperties;
+
   ///
-  /// This constructor will create OTP instance.
+  /// This constructor will create an OTP instance.
   ///
-  /// @param {secret}
-  /// @type {String}
-  /// @desc random base32-encoded key, it is the
-  /// key that be used to verify.
+  /// All parameters are mandatory however [digits] and
+  /// [algorithm] have a default value, so can be ignored.
+  /// Will throw an exception if the line above isn't satisfied.
   ///
-  /// @param {digits}
-  /// @type {int}
-  /// @desc the length of the one-time password, default to be 6
-  ///
-  /// @param {digest}
-  /// @type {String}
-  /// @desc the key that be used to do HMAC encoding, dedault and
-  /// only to be "sha1"
-  ///
-  ///
-  OTP({String secret, int digits = 6})
+  OTP(
+      {String secret,
+      int digits = 6,
+      OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
       : assert(secret != null),
         assert(digits != null),
-        assert(digits > 0) {
+        assert(algorithm != null),
+        assert(digits >= 6 && digits <= 8) {
     this.secret = secret;
     this.digits = digits;
+    this.algorithm = algorithm;
   }
 
   ///
@@ -46,19 +50,15 @@ abstract class OTP {
   /// function, it will generate the OTP object with params,
   /// the params may be counter or time.
   ///
-  /// @param {input}
-  /// @type {int}
-  /// @desc input params to generate OTP object, maybe
-  /// counter or time.
+  /// All parameters are mandatory however [algorithm] have
+  /// a default value, so can be ignored.
   ///
-  /// @return {String}
-  ///
-  String generateOTP({int input}) {
+  String generateOTP({int input, OTPAlgorithm algorithm = OTPAlgorithm.SHA1}) {
     /// base32 decode the secret
     var hmacKey = base32.decode(this.secret);
 
     /// initial the HMAC-SHA1 object
-    var hmacSha1 = Hmac(sha1, hmacKey);
+    var hmacSha1 = createHmacFor(algorithm: algorithm, key: hmacKey);
 
     /// get hmac answer
     var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
@@ -80,17 +80,10 @@ abstract class OTP {
   }
 
   ///
-  /// Generate a url with TOTP instance.
+  /// Generate a url with OTP instance.
   ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc Service name
-  ///
-  /// @param {account}
-  /// @type {String}
-  /// @desc Service identifier or detail
-  ///
-  /// @return {String}
+  /// Use [issuer] and [account] parameters to specify the token information.
+  /// All the remaining OTP fields will be exported.
   ///
   String generateUrl({String issuer, String account}) {
     final _secret = this.secret;
@@ -98,6 +91,12 @@ abstract class OTP {
     final _account = Uri.encodeComponent(account ?? '');
     final _issuer = Uri.encodeQueryComponent(issuer ?? '');
 
-    return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits';
+    final _algorithm = rawValue(algorithm: algorithm);
+    final _extra = extraUrlProperties
+        .map((key, value) => MapEntry(key, "$key=$value"))
+        .values
+        .join('&');
+
+    return 'otpauth://$_type/$_account?secret=$_secret&issuer=$_issuer&digits=$digits&algorithm=$_algorithm&$_extra';
   }
 }

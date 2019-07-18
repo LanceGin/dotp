@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the HOTP constructor from the Class HOTP class from the dart_otp library, for the Dart programming language.">
-  <title>HOTP constructor - HOTP class - dart_otp library - Dart API</title>
+  <meta name="description" content="API docs for the counter property from the HOTP class, for the Dart programming language.">
+  <title>counter property - HOTP class - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -27,9 +27,9 @@
     <li><a href="index.html">dart_otp</a></li>
     <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
     <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-    <li class="self-crumb">HOTP constructor</li>
+    <li class="self-crumb">counter property</li>
   </ol>
-  <div class="self-name">HOTP</div>
+  <div class="self-name">counter</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="index.html">dart_otp</a></li>
       <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
       <li><a href="dart_otp/HOTP-class.html">HOTP</a></li>
-      <li class="self-crumb">HOTP constructor</li>
+      <li class="self-crumb">counter property</li>
     </ol>
     
     <h5>HOTP class</h5>
@@ -82,34 +82,25 @@
     
     
     </ol>
-  </div><!--/.sidebar-offcanvas-left-->
+  </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-constructor">HOTP</span> constructor</h1></div>
+      <div><h1><span class="kind-property">counter</span> property</h1></div>
 
-    <section class="multi-line-signature">
-      
-      <span class="name ">HOTP</span>(<wbr>{<span class="parameter" id="-param-secret"><span class="type-annotation">String</span> <span class="parameter-name">secret</span>, </span> <span class="parameter" id="-param-counter"><span class="type-annotation">int</span> <span class="parameter-name">counter</span>: <span class="default-value">0</span>, </span> <span class="parameter" id="-param-digits"><span class="type-annotation">int</span> <span class="parameter-name">digits</span>: <span class="default-value">6</span>, </span> <span class="parameter" id="-param-algorithm"><span class="type-annotation">OTPAlgorithm</span> <span class="parameter-name">algorithm</span>: <span class="default-value">OTPAlgorithm.SHA1</span></span> })
-    </section>
+        <section class="multi-line-signature">
+          <span class="returntype">int</span>
+          <span class="name ">counter</span>
+          <div class="features">read / write</div>
+        </section>
+        <section class="desc markdown">
+          <p>The counter value for one-time password.</p>
+        </section>
+                <section class="summary source-code" id="source">
+          <h2><span>Implementation</span></h2>
+          <pre class="language-dart"><code class="language-dart">int counter
 
-    <section class="desc markdown">
-      <p>This constructor will create an HOTP instance.</p>
-<p>All parameters are mandatory however <code>counter</code>,
-<code>digits</code> and <code>algorithm</code> have a default values, so can be ignored.</p>
-<p>Will throw an exception if the line above isn't satisfied.</p>
-    </section>
-    
-    <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">HOTP(
-    {String secret,
-    int counter = 0,
-    int digits = 6,
-    OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
-    : super(secret: secret, digits: digits, algorithm: algorithm) {
-  this.counter = counter;
-}</code></pre>
-    </section>
+</code></pre>
+        </section>
 
   </div> <!-- /.main-content -->
 

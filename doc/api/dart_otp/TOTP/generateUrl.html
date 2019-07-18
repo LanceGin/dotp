@@ -59,8 +59,10 @@
       <li class="section-title">
         <a href="dart_otp/TOTP-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart_otp/TOTP/extraUrlProperties.html">extraUrlProperties</a></li>
       <li><a href="dart_otp/TOTP/interval.html">interval</a></li>
       <li><a href="dart_otp/TOTP/type.html">type</a></li>
+      <li class="inherited"><a href="dart_otp/TOTP/algorithm.html">algorithm</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/digits.html">digits</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart_otp/TOTP/runtimeType.html">runtimeType</a></li>
@@ -93,14 +95,9 @@
       <div class="features">inherited</div>
     </section>
     <section class="desc markdown">
-      <p>Generate a url with TOTP instance.</p>
-<p>@param {issuer}
-@type {String}
-@desc Service name</p>
-<p>@param {account}
-@type {String}
-@desc Service identifier or detail</p>
-<p>@return {String}</p>
+      <p>Generate a url with OTP instance.</p>
+<p>Use <code>issuer</code> and <code>account</code> parameters to specify the token information.
+All the remaining OTP fields will be exported.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -111,7 +108,13 @@
   final _account = Uri.encodeComponent(account ?? &#39;&#39;);
   final _issuer = Uri.encodeQueryComponent(issuer ?? &#39;&#39;);
 
-  return &#39;otpauth:&#47;&#47;$_type&#47;$_account?secret=$_secret&amp;issuer=$_issuer&amp;digits=$digits&#39;;
+  final _algorithm = rawValue(algorithm: algorithm);
+  final _extra = extraUrlProperties
+      .map((key, value) =&gt; MapEntry(key, &quot;$key=$value&quot;))
+      .values
+      .join(&#39;&amp;&#39;);
+
+  return &#39;otpauth:&#47;&#47;$_type&#47;$_account?secret=$_secret&amp;issuer=$_issuer&amp;digits=$digits&amp;algorithm=$_algorithm&amp;$_extra&#39;;
 }</code></pre>
     </section>
 
@@ -124,7 +127,7 @@
 
 <footer>
   <span class="no-break">
-    dart_otp 1.1.0
+    dart_otp 1.2.0
   </span>
 
   

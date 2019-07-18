@@ -7,12 +7,15 @@ build: lib/*dart test/*dart deps
 deps: pubspec.yaml
 	pub get
 
-reformatting:
+format:
 	dartfmt -w lib/ test/
 
-build-local: reformatting build
+build-local: format build check-publish
 	genhtml -o coverage coverage/lcov.info
 	open coverage/index.html
+
+check-publish:
+	pub publish -n
 
 publish:
 	pub publish
