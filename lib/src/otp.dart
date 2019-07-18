@@ -10,29 +10,27 @@ import 'package:dart_otp/src/components/otp_type.dart';
 import 'util.dart';
 
 abstract class OTP {
+  /// The length of the one-time password, between 6 and 8.
   int digits;
+
+  /// The Base32 secret key used to generate the one-time password.
   String secret;
+
+  /// The crypto algorithm used on HMAC encoding.
   OTPAlgorithm algorithm;
 
+  /// The type of the token.
   OTPType get type;
+
+  /// To access custom properties when generating the url.
   Map<String, dynamic> get extraUrlProperties;
 
   ///
-  /// This constructor will create OTP instance.
+  /// This constructor will create an OTP instance.
   ///
-  /// @param {secret}
-  /// @type {String}
-  /// @desc random base32-encoded key, it is the
-  /// key that be used to verify.
-  ///
-  /// @param {digits}
-  /// @type {int}
-  /// @desc the length of the one-time password, default to be 6
-  ///
-  /// @param {algorithm}
-  /// @type {OTPAlgorithm}
-  /// @desc the algorithm to be used on HMAC encoding, dedault to be SHA1
-  ///
+  /// All parameters are mandatory however [digits] and
+  /// [algorithm] have a default value, so can be ignored.
+  /// Will throw an exception if the line above isn't satisfied.
   ///
   OTP(
       {String secret,
@@ -41,7 +39,7 @@ abstract class OTP {
       : assert(secret != null),
         assert(digits != null),
         assert(algorithm != null),
-        assert(digits > 0) {
+        assert(digits >= 6 && digits <= 8) {
     this.secret = secret;
     this.digits = digits;
     this.algorithm = algorithm;
@@ -52,12 +50,8 @@ abstract class OTP {
   /// function, it will generate the OTP object with params,
   /// the params may be counter or time.
   ///
-  /// @param {input}
-  /// @type {int}
-  /// @desc input params to generate OTP object, maybe
-  /// counter or time.
-  ///
-  /// @return {String}
+  /// All parameters are mandatory however [algorithm] have
+  /// a default value, so can be ignored.
   ///
   String generateOTP({int input, OTPAlgorithm algorithm = OTPAlgorithm.SHA1}) {
     /// base32 decode the secret
@@ -86,17 +80,10 @@ abstract class OTP {
   }
 
   ///
-  /// Generate a url with TOTP instance.
+  /// Generate a url with OTP instance.
   ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc Service name
-  ///
-  /// @param {account}
-  /// @type {String}
-  /// @desc Service identifier or detail
-  ///
-  /// @return {String}
+  /// Use [issuer] and [account] parameters to specify the token information.
+  /// All the remaining OTP fields will be exported.
   ///
   String generateUrl({String issuer, String account}) {
     final _secret = this.secret;

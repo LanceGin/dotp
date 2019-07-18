@@ -7,7 +7,10 @@ import 'otp.dart';
 import 'package:dart_otp/src/components/otp_type.dart';
 import 'package:dart_otp/src/components/otp_algorithm.dart';
 
+///
+/// HOTP class will generate the OTP (One Time Password) object with given counter.
 class HOTP extends OTP {
+  /// The counter value for one-time password.
   int counter;
 
   @override
@@ -17,25 +20,12 @@ class HOTP extends OTP {
   Map<String, dynamic> get extraUrlProperties => {"counter": counter};
 
   ///
-  /// @param {secret}
-  /// @type {String}
-  /// @desc random base32-encoded key to generate OTP.
+  /// This constructor will create an HOTP instance.
   ///
-  /// @param {counter}
-  /// @type {int}
-  /// @desc the counter value for OTP.
-  /// This defaults to 0.
+  /// All parameters are mandatory however [counter],
+  /// [digits] and [algorithm] have a default values, so can be ignored.
   ///
-  /// @param {digits}
-  /// @type {int}
-  /// @desc the length of the one-time password.
-  /// This defaults to 6.
-  ///
-  /// @param {algorithm}
-  /// @type {OTPAlgorithm}
-  /// @desc the algorithm to be used on HMAC encoding, dedault to be SHA1
-  ///
-  /// @return {HOTP}
+  /// Will throw an exception if the line above isn't satisfied.
   ///
   HOTP(
       {String secret,
@@ -47,17 +37,12 @@ class HOTP extends OTP {
   }
 
   ///
-  /// Generate the OTP with the given count
+  /// Generate the HOTP value with the given count
   ///
-  /// @param {counter}
-  /// @type {int}
-  /// @desc the OTP HMAC counter
-  ///
-  /// @return {String}
-  ///
-  /// @example
+  /// ```dart
   /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
   /// hotp.at(counter: 0); // => 432143
+  /// ```
   ///
   String at({int counter}) {
     if (counter == null || counter < 0) {
@@ -68,25 +53,18 @@ class HOTP extends OTP {
   }
 
   ///
-  /// Verifies the OTP passed in against the current time OTP.
+  /// Verifies the HOTP value passed in against the a given counter.
   ///
-  /// @param {otp}
-  /// @type {String}
-  /// @desc the OTP waiting for checking
+  /// All parameters are mandatory.
   ///
-  /// @param {counter}
-  /// @type {int}
-  /// @desc the OTP HMAC counter
-  ///
-  /// @return {Boolean}
-  ///
-  /// @example
+  /// ```dart
   /// HOTP hotp = HOTP(secret: 'BASE32ENCODEDSECRET');
   /// hotp.at(counter: 0); // => 432143
   /// // Verify for current time
   /// hotp.verify(otp: 432143, counter: 0); // => true
   /// // Verify after 30s
   /// hotp.verify(otp: 432143, counter: 10); // => false
+  /// ```
   ///
   bool verify({String otp, int counter}) {
     if (otp == null || counter == null) {
