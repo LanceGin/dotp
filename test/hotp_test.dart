@@ -47,14 +47,18 @@ void main() {
 
   test('[HOTP] Should generate token urls', () {
     expect(hotp.generateUrl(issuer: "Sample", account: "Account"),
-        "otpauth://hotp/Account?secret=J22U6B3WIWRRBTAV&issuer=Sample&digits=6");
+        "otpauth://hotp/Account?secret=J22U6B3WIWRRBTAV&issuer=Sample&digits=6&algorithm=SHA1&counter=0");
     expect(
         hotp.generateUrl(issuer: "Encoded Issuer", account: "Account Detailed"),
-        "otpauth://hotp/Account%20Detailed?secret=J22U6B3WIWRRBTAV&issuer=Encoded+Issuer&digits=6");
+        "otpauth://hotp/Account%20Detailed?secret=J22U6B3WIWRRBTAV&issuer=Encoded+Issuer&digits=6&algorithm=SHA1&counter=0");
 
-    var token = HOTP(secret: "J22U6B3WIWRRBTAV", digits: 8);
+    var token = HOTP(
+        secret: "J22U6B3WIWRRBTAV",
+        digits: 8,
+        counter: 10,
+        algorithm: OTPAlgorithm.SHA256);
     expect(token.generateUrl(issuer: "More", account: "Digits"),
-        "otpauth://hotp/Digits?secret=J22U6B3WIWRRBTAV&issuer=More&digits=8");
+        "otpauth://hotp/Digits?secret=J22U6B3WIWRRBTAV&issuer=More&digits=8&algorithm=SHA256&counter=10");
   });
 
   test('[HOTP] Fail conditions', () {
@@ -72,10 +76,10 @@ void main() {
     expect(hotp.verify(otp: "", counter: -1), false);
 
     expect(hotp.generateUrl(issuer: null, account: null),
-        "otpauth://hotp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6");
+        "otpauth://hotp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6&algorithm=SHA1&counter=0");
     expect(hotp.generateUrl(issuer: null, account: ""),
-        "otpauth://hotp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6");
+        "otpauth://hotp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6&algorithm=SHA1&counter=0");
     expect(hotp.generateUrl(issuer: "", account: null),
-        "otpauth://hotp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6");
+        "otpauth://hotp/?secret=J22U6B3WIWRRBTAV&issuer=&digits=6&algorithm=SHA1&counter=0");
   });
 }

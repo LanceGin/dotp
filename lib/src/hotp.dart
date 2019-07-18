@@ -13,6 +13,9 @@ class HOTP extends OTP {
   @override
   OTPType get type => OTPType.HOTP;
 
+  @override
+  Map<String, dynamic> get extraUrlProperties => {"counter": counter};
+
   ///
   /// @param {secret}
   /// @type {String}

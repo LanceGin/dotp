@@ -14,6 +14,9 @@ class TOTP extends OTP {
   @override
   OTPType get type => OTPType.TOTP;
 
+  @override
+  Map<String, dynamic> get extraUrlProperties => {"period": interval};
+
   ///
   /// @param {secret}
   /// @type {String}
