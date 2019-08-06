@@ -13,6 +13,10 @@ void main() {
         Hmac(sha1, key).toString());
     expect(createHmacFor(algorithm: OTPAlgorithm.SHA256, key: key).toString(),
         Hmac(sha256, key).toString());
+    expect(createHmacFor(algorithm: OTPAlgorithm.SHA384, key: key).toString(),
+        Hmac(sha384, key).toString());
+    expect(createHmacFor(algorithm: OTPAlgorithm.SHA512, key: key).toString(),
+        Hmac(sha512, key).toString());
   });
 
   test(
@@ -20,6 +24,8 @@ void main() {
       () {
     expect(rawValue(algorithm: OTPAlgorithm.SHA1), 'SHA1');
     expect(rawValue(algorithm: OTPAlgorithm.SHA256), 'SHA256');
+    expect(rawValue(algorithm: OTPAlgorithm.SHA384), 'SHA384');
+    expect(rawValue(algorithm: OTPAlgorithm.SHA512), 'SHA512');
   });
 
   test('[OTPAlgorithm] Fail conditions', () {
