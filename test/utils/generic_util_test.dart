@@ -1,4 +1,4 @@
-import 'package:dart_otp/src/util.dart';
+import 'package:dart_otp/src/utils/generic_util.dart';
 import 'package:test/test.dart';
 
 void main() {

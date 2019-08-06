@@ -7,7 +7,9 @@ import 'dart:math';
 import 'package:base32/base32.dart';
 import 'package:dart_otp/src/components/otp_algorithm.dart';
 import 'package:dart_otp/src/components/otp_type.dart';
-import 'util.dart';
+import 'package:dart_otp/src/utils/generic_util.dart';
+import 'package:dart_otp/src/utils/algorithm_util.dart';
+import 'package:dart_otp/src/utils/otp_util.dart';
 
 abstract class OTP {
   /// The length of the one-time password, between 6 and 8.
@@ -58,10 +60,11 @@ abstract class OTP {
     var hmacKey = base32.decode(this.secret);
 
     /// initial the HMAC-SHA1 object
-    var hmacSha1 = createHmacFor(algorithm: algorithm, key: hmacKey);
+    var hmacSha =
+        AlgorithmUtil.createHmacFor(algorithm: algorithm, key: hmacKey);
 
     /// get hmac answer
-    var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
+    var hmac = hmacSha.convert(Util.intToBytelist(input: input)).bytes;
 
     /// calculate the init offset
     int offset = hmac[hmac.length - 1] & 0xf;
@@ -87,11 +90,11 @@ abstract class OTP {
   ///
   String generateUrl({String issuer, String account}) {
     final _secret = this.secret;
-    final _type = otpTypeValue(type: type);
+    final _type = OTPUtil.otpTypeValue(type: type);
     final _account = Uri.encodeComponent(account ?? '');
     final _issuer = Uri.encodeQueryComponent(issuer ?? '');
 
-    final _algorithm = rawValue(algorithm: algorithm);
+    final _algorithm = AlgorithmUtil.rawValue(algorithm: algorithm);
     final _extra = extraUrlProperties
         .map((key, value) => MapEntry(key, "$key=$value"))
         .values

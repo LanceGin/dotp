@@ -1,8 +1,3 @@
-///
-/// @module   : Util module to process the datas.
-/// @author   : Gin (gin.lance.inside@hotmail.com)
-///
-
 abstract class Util {
   ///
   /// format the time string to int

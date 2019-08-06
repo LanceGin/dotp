@@ -103,11 +103,11 @@ All the remaining OTP fields will be exported.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">String generateUrl({String issuer, String account}) {
   final _secret = this.secret;
-  final _type = otpTypeValue(type: type);
+  final _type = OTPUtil.otpTypeValue(type: type);
   final _account = Uri.encodeComponent(account ?? &#39;&#39;);
   final _issuer = Uri.encodeQueryComponent(issuer ?? &#39;&#39;);
 
-  final _algorithm = rawValue(algorithm: algorithm);
+  final _algorithm = AlgorithmUtil.rawValue(algorithm: algorithm);
   final _extra = extraUrlProperties
       .map((key, value) =&gt; MapEntry(key, &quot;$key=$value&quot;))
       .values
@@ -126,7 +126,7 @@ All the remaining OTP fields will be exported.</p>
 
 <footer>
   <span class="no-break">
-    dart_otp 1.2.0
+    dart_otp 1.3.0
   </span>
 
   
