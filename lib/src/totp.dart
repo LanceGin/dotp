@@ -5,7 +5,7 @@
 
 import 'otp.dart';
 import 'components/otp_type.dart';
-import 'util.dart';
+import 'package:dart_otp/src/utils/generic_util.dart';
 import 'package:dart_otp/src/components/otp_algorithm.dart';
 
 ///
