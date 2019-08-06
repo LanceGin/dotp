@@ -10,9 +10,10 @@ The package was implement based on [RFC4226](https://tools.ietf.org/html/rfc4226
 
 ## Feature
 
-* Generate a `otpauth url` with the b32 encoded string
 * Create and verify a HOTP object
 * Create and verify a TOTP object
+* Generate a `otpauth url` with the b32 encoded string
+* Support for OTP tokens encrypted with SHA1, SHA256, SHA384 and SHA512
 
 ### Installation
 
@@ -22,7 +23,7 @@ Add `dart_otp` as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  dart_otp: ^1.2.0
+  dart_otp: ^1.3.0
 ```
 
 ### Example
