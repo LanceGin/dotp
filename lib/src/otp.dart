@@ -58,10 +58,10 @@ abstract class OTP {
     var hmacKey = base32.decode(this.secret);
 
     /// initial the HMAC-SHA1 object
-    var hmacSha1 = createHmacFor(algorithm: algorithm, key: hmacKey);
+    var hmacSha = createHmacFor(algorithm: algorithm, key: hmacKey);
 
     /// get hmac answer
-    var hmac = hmacSha1.convert(Util.intToBytelist(input: input)).bytes;
+    var hmac = hmacSha.convert(Util.intToBytelist(input: input)).bytes;
 
     /// calculate the init offset
     int offset = hmac[hmac.length - 1] & 0xf;
