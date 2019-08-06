@@ -1,6 +1,6 @@
 import 'package:crypto/crypto.dart';
 
-enum OTPAlgorithm { SHA1, SHA256 }
+enum OTPAlgorithm { SHA1, SHA256, SHA384, SHA512 }
 
 String rawValue({OTPAlgorithm algorithm}) {
   switch (algorithm) {
@@ -8,6 +8,10 @@ String rawValue({OTPAlgorithm algorithm}) {
       return 'SHA1';
     case OTPAlgorithm.SHA256:
       return 'SHA256';
+    case OTPAlgorithm.SHA384:
+      return 'SHA384';
+    case OTPAlgorithm.SHA512:
+      return 'SHA512';
 
     default:
       return null;
@@ -24,6 +28,10 @@ Hmac createHmacFor({OTPAlgorithm algorithm, List<int> key}) {
       return Hmac(sha1, key);
     case OTPAlgorithm.SHA256:
       return Hmac(sha256, key);
+    case OTPAlgorithm.SHA384:
+      return Hmac(sha384, key);
+    case OTPAlgorithm.SHA512:
+      return Hmac(sha512, key);
 
     default:
       return null;
