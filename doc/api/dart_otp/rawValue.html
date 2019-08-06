@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="dart_otp library API docs, for the Dart programming language.">
-  <title>dart_otp library - Dart API</title>
+  <meta name="description" content="API docs for the rawValue function from the dart_otp library, for the Dart programming language.">
+  <title>rawValue function - dart_otp library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
@@ -25,9 +25,10 @@
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">dart_otp</a></li>
-    <li class="self-crumb">dart_otp library</li>
+    <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
+    <li class="self-crumb">rawValue function</li>
   </ol>
-  <div class="self-name">dart_otp</div>
+  <div class="self-name">rawValue</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -44,73 +45,10 @@
     
     <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
       <li><a href="index.html">dart_otp</a></li>
-      <li class="self-crumb">dart_otp library</li>
+      <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
+      <li class="self-crumb">rawValue function</li>
     </ol>
     
-    <h5><span class="package-name">dart_otp</span> <span class="package-kind">package</span></h5>
-    <ol>
-          <li class="section-title">Libraries</li>
-          <li><a href="dart_otp/dart_otp-library.html">dart_otp</a></li>
-    </ol>
-  </div>
-
-  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-library">dart_otp</span> library </h1></div>
-
-    <section class="desc markdown">
-      <p>@project  : dart_otp
-@author   : Gin (gin.lance.inside@hotmail.com)
-@link     : <a href="https://github.com/BrunoMiguens/dart_otp">https://github.com/BrunoMiguens/dart_otp</a>
-@Disc     : a dart package to generate and verify one-time passwords</p>
-    </section>
-    
-    <section class="summary offset-anchor" id="classes">
-      <h2>Classes</h2>
-
-      <dl>
-        <dt id="HOTP">
-          <span class="name "><a href="dart_otp/HOTP-class.html">HOTP</a></span>         
-        </dt>
-        <dd>
-          HOTP class will generate the OTP (One Time Password) object with given counter.
-        </dd>
-        <dt id="TOTP">
-          <span class="name "><a href="dart_otp/TOTP-class.html">TOTP</a></span>         
-        </dt>
-        <dd>
-          TOTP class will generate the OTP (One Time Password) object with the current or given time.
-        </dd>
-      </dl>
-    </section>
-
-
-
-
-
-    <section class="summary offset-anchor" id="enums">
-      <h2>Enums</h2>
-
-      <dl>
-        <dt id="OTPAlgorithm">
-          <span class="name "><a href="dart_otp/OTPAlgorithm-class.html">OTPAlgorithm</a></span>         
-        </dt>
-        <dd>
-          
-        </dd>
-        <dt id="OTPType">
-          <span class="name "><a href="dart_otp/OTPType-class.html">OTPType</a></span>         
-        </dt>
-        <dd>
-          
-        </dd>
-      </dl>
-    </section>
-
-
-
-  </div> <!-- /.main-content -->
-
-  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <h5>dart_otp library</h5>
     <ol>
       <li class="section-title"><a href="dart_otp/dart_otp-library.html#classes">Classes</a></li>
@@ -120,6 +58,10 @@
     
     
     
+      <li class="section-title"><a href="dart_otp/dart_otp-library.html#functions">Functions</a></li>
+      <li><a href="dart_otp/createHmacFor.html">createHmacFor</a></li>
+      <li><a href="dart_otp/otpTypeValue.html">otpTypeValue</a></li>
+      <li><a href="dart_otp/rawValue.html">rawValue</a></li>
     
       <li class="section-title"><a href="dart_otp/dart_otp-library.html#enums">Enums</a></li>
       <li><a href="dart_otp/OTPAlgorithm-class.html">OTPAlgorithm</a></li>
@@ -127,7 +69,40 @@
     
     
     </ol>
-  </div><!--/sidebar-offcanvas-right-->
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-function">rawValue</span> function </h1></div>
+
+    <section class="multi-line-signature">
+        <span class="returntype">String</span>
+                <span class="name ">rawValue</span>
+(<wbr>{<span class="parameter" id="rawValue-param-algorithm"><span class="type-annotation"><a href="dart_otp/OTPAlgorithm-class.html">OTPAlgorithm</a></span> <span class="parameter-name">algorithm</span></span> })
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">String rawValue({OTPAlgorithm algorithm}) {
+  switch (algorithm) {
+    case OTPAlgorithm.SHA1:
+      return &#39;SHA1&#39;;
+    case OTPAlgorithm.SHA256:
+      return &#39;SHA256&#39;;
+    case OTPAlgorithm.SHA384:
+      return &#39;SHA384&#39;;
+    case OTPAlgorithm.SHA512:
+      return &#39;SHA512&#39;;
+
+    default:
+      return null;
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 
 </main>
 
