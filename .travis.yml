@@ -11,16 +11,24 @@ jobs:
       after_success:
         - coveralls-lcov --repo-token $COVERALLS_TOKEN coverage/lcov.info
     - stage: analyze_and_test
-      name: "SDK: 2.4.0"
-      dart: "2.4.0"
+      name: "SDK: 2.11.0"
+      dart: "2.11.0"
       script: make
     - stage: analyze_and_test
-      name: "SDK: 2.3.0"
-      dart: "2.3.0"
+      name: "SDK: 2.10.0"
+      dart: "2.10.0"
       script: make
     - stage: analyze_and_test
-      name: "SDK: 2.2.0"
-      dart: "2.2.0"
+      name: "SDK: 2.9.0"
+      dart: "2.9.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.8.0"
+      dart: "2.8.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.7.0"
+      dart: "2.7.0"
       script: make
 
 stages:
