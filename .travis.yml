@@ -1,0 +1,39 @@
+language: dart
+install:
+  - gem install coveralls-lcov
+
+jobs:
+  include:
+    - stage: analyze_and_test
+      name: "SDK: stable"
+      dart: "stable"
+      script: make
+      after_success:
+        - coveralls-lcov --repo-token $COVERALLS_TOKEN coverage/lcov.info
+    - stage: analyze_and_test
+      name: "SDK: 2.11.0"
+      dart: "2.11.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.10.0"
+      dart: "2.10.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.9.0"
+      dart: "2.9.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.8.0"
+      dart: "2.8.0"
+      script: make
+    - stage: analyze_and_test
+      name: "SDK: 2.7.0"
+      dart: "2.7.0"
+      script: make
+
+stages:
+  - analyze_and_test
+
+cache:
+  directories:
+    - "$HOME/.pub-cache"

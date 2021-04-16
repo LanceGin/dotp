@@ -1,8 +1,3 @@
-///
-/// @module   : Util module to process the datas.
-/// @author   : Gin (gin.lance.inside@hotmail.com)
-///
-
 abstract class Util {
   ///
   /// format the time string to int
@@ -18,7 +13,7 @@ abstract class Util {
   ///
   /// @return {Int}
   ///
-  static int timeFormat(DateTime time, int interval) {
+  static int timeFormat({DateTime time, int interval}) {
     final _timeStr = time.millisecondsSinceEpoch.toString();
     final _formatTime = _timeStr.substring(0, _timeStr.length - 3);
 
@@ -34,15 +29,15 @@ abstract class Util {
   ///
   /// @return {List}
   ///
-  static List intToBytelist(int input, [int padding = 8]) {
+  static List intToBytelist({int input, int padding = 8}) {
     List<int> _result = [];
     var _input = input;
     while (_input != 0) {
       _result.add(_input & 0xff);
-      _input >>= 8;
+      _input >>= padding;
     }
-    _result.addAll([0, 0, 0, 0, 0, 0, 0, 0]);
-    _result = _result.sublist(0, 8);
+    _result.addAll(List<int>.generate(padding, (_) => 0));
+    _result = _result.sublist(0, padding);
     _result = _result.reversed.toList();
     return _result;
   }

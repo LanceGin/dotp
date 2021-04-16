@@ -4,87 +4,94 @@
 ///
 
 import 'otp.dart';
-import 'util.dart';
+import 'components/otp_type.dart';
+import 'package:dart_otp/src/utils/generic_util.dart';
+import 'package:dart_otp/src/components/otp_algorithm.dart';
 
+///
+/// TOTP class will generate the OTP (One Time Password) object with the current or given time.
 class TOTP extends OTP {
+  /// Period in which should be generated new tokens.
+  int interval;
+
+  @override
+  OTPType get type => OTPType.TOTP;
+
+  @override
+  Map<String, dynamic> get extraUrlProperties => {"period": interval};
+
   ///
-  /// @param {secret}
-  /// @type {String}
-  /// @desc random base32-encoded key to generate OTP.
+  /// This constructor will create an TOTP instance.
   ///
-  /// @param {interval}
-  /// @type {int}
-  /// @desc the time interval in seconds for OTP.
-  /// This defaults to 30.
+  /// All parameters are mandatory however [interval],
+  /// [digits] and [algorithm] have a default values, so can be ignored.
   ///
-  /// @return {TOTP}
+  /// Will throw an exception if the line above isn't satisfied.
   ///
-  int _interval;
-  TOTP(String secret, [int interval = 30]) : super(secret) {
-    this._interval = interval;
+  TOTP(
+      {String secret,
+      int digits = 6,
+      int interval = 30,
+      OTPAlgorithm algorithm = OTPAlgorithm.SHA1})
+      : super(secret: secret, digits: digits, algorithm: algorithm) {
+    this.interval = interval;
   }
 
   ///
-  /// Generate the OTP with current time.
+  /// Generate the TOTP value with current time.
   ///
-  /// @return {OTP}
-  ///
-  /// @example
-  /// TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
+  /// ```dart
+  /// TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
   /// totp.now(); // => 432143
+  /// ```
   ///
   String now() {
-    DateTime _now = DateTime.now();
-    int _formatTime = Util.timeFormat(_now, this._interval);
-
-    return super.generateOTP(_formatTime);
+    int _formatTime = Util.timeFormat(time: DateTime.now(), interval: interval);
+    return super.generateOTP(input: _formatTime);
   }
 
   ///
-  /// Verifies the OTP passed in against the current time OTP.
+  /// Generate the OTP with a custom time.
   ///
-  /// @param {otp}
-  /// @type {String}
-  /// @desc the OTP waiting for checking
+  /// All parameters are mandatory.
   ///
-  /// @param {time}
-  /// @type {int or datetime}
-  /// @desc Time to check OTP at (defaults to now)
+  /// ```dart
+  /// TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
+  /// totp.value(date: DateTime.now()); // => 432143
+  /// ```
   ///
-  /// @return {Boolean}
+  String value({DateTime date}) {
+    if (date == null) {
+      return null;
+    }
+
+    int _formatTime = Util.timeFormat(time: date, interval: interval);
+    return super.generateOTP(input: _formatTime);
+  }
+
   ///
-  /// @example
-  /// TOTP totp = dotp.TOTP('BASE32ENCODEDSECRET');
+  /// Verifies the TOTP value passed in against the current time.
+  ///
+  /// All parameters are mandatory.
+  ///
+  /// ```dart
+  /// TOTP totp = TOTP(secret: 'BASE32ENCODEDSECRET');
   /// totp.now(); // => 432143
   /// // Verify for current time
-  /// totp.verify(432143); // => true
+  /// totp.verify(otp: 432143); // => true
   /// // Verify after 30s
-  /// totp.verify(432143); // => false
+  /// totp.verify(otp: 432143); // => false
+  /// ```
   ///
-  bool verify(String otp, [DateTime time]) {
-    DateTime _time = time;
-    _time ??= DateTime.now();
-
-    String otpTime = super.generateOTP(Util.timeFormat(_time, this._interval));
-    if (otp == otpTime) {
-      return true;
+  bool verify({String otp, DateTime time}) {
+    if (otp == null) {
+      return false;
     }
-    return false;
-  }
 
-  ///
-  /// Generate a url with TOTP instance.
-  ///
-  /// @param {issuer}
-  /// @type {String}
-  /// @desc maybe it is the Service name
-  ///
-  /// @return {String}
-  ///
-  @override
-  String urlGen(String _issuer, String _type) {
-    _issuer ??= '';
-    _type = 'totp';
-    return super.urlGen(_issuer, _type);
+    var _time = time ?? DateTime.now();
+    var _input = Util.timeFormat(time: _time, interval: interval);
+
+    String otpTime = super.generateOTP(input: _input);
+    return otp == otpTime;
   }
 }
